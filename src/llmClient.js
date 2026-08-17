@@ -1,3 +1,4 @@
+require("dotenv").config();
 // Single entrypoint for all LLM calls. Everything downstream (generate.js,
 // promptBuilder.js, feedback.js) calls generateContent()/generateText() and
 // never knows or cares whether MODE is "test" or "production" — same

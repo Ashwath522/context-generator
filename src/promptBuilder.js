@@ -47,22 +47,42 @@ RULES:
 1. Never alter or contradict a factual value given in the source data
    (dimensions, material, weight) — these belong in specifications only
    and must never be rewritten there.
-2. When paraphrasing facts into description prose, never copy source
-   sentences verbatim — always restate naturally.
-3. The price tier ({{TIER}}) must shape your WORD CHOICE only — {{TIER_VOICE}}.
+2. Every fact you mention from the source data must actually be present
+   in the source data — never invent details. Reusing a short phrase or
+   sentence from the source is fine when it's the clearest way to state
+   an important fact; the priority is that required facts are present
+   and the format rules below are followed, not avoiding all repetition.
+3. NUMBERS STAY AS DIGITS. Any numeric spec you reference in prose
+   (dimensions, thickness, seating capacity, counts, sizes, etc.) must
+   be written the same way the source gives it — digits, not spelled-out
+   words. Write "4 Inches" / "4-seater" / "78 x 60 in", never "four
+   inches" / "four-seater". This applies everywhere in the description,
+   not just in specifications.
+4. The price tier ({{TIER}}) must shape your WORD CHOICE only — {{TIER_VOICE}}.
    Never state the tier name, never mention price, never imply a numeric
    price range.
-4. care_and_maintenance: select and politely rephrase ONLY from the
+5. care_and_maintenance: select and politely rephrase ONLY from the
    provided reference list below. Do not invent instructions. Exactly 3
    instructions, exactly 2 avoid items, polite phrasing required
    ("We recommend...", "It's best to avoid...").
    Reference for "{{MATCHED_CATEGORY}}":
    Instructions: {{MATCHED_INSTRUCTIONS}}
    Avoid: {{MATCHED_AVOID}}
-5. warranty: status_line is one sentence with **Yes**/**No** and
-   **duration** in bold markdown. points: up to 4, only from real
-   source-provided facts, never invented to pad the count.
-6. If a fact is genuinely missing and must be inferred, use plain,
+6. warranty:
+   - status_line: exactly 1 sentence with **Yes**/**No** and **duration** in
+     bold markdown using digits only (e.g. **12 months**).
+   - points: aim for 3 items when source facts allow:
+       • 2 lines describing what IS covered (includes)
+       • 1 line describing what is NOT covered (excludes)
+     If the source only has include facts → write 2 include points.
+     If the source only has exclude facts → write 2 exclude points.
+     If the source only has a duration and no coverage details → write
+     exactly 2 short points that restate duration coverage and that
+     standard terms apply (do not invent specific defects or exclusions).
+   - Never invent covered defects, parts, or exclusions not present in
+     the source data.
+   - Do not generate the link field.
+7. If a fact is genuinely missing and must be inferred, use plain,
    non-committal language — never state an inferred detail with
    unwarranted confidence.
 
@@ -93,17 +113,12 @@ function buildPrompt(product, priceBands) {
     .replace('{{MATCHED_AVOID}}', JSON.stringify(careMatch.avoid))
     .replace('{{LEARNED_RULES}}', formatLearnedRules(rules, product.category));
 
-  // Price is deliberately excluded from what the model sees. The tier is
-  // computed above and passed in as a label only (via {{TIER}} in the
-  // system prompt) — the model never receives the raw number, so there's
-  // nothing for it to leak. This is a stronger guarantee than the output
-  // regex check in validator.js, which is now a backstop, not the primary
-  // control.
-  const { price, ...productForPrompt } = product;
+  // Note: raw price is included here only so the model has context for
+  // tone (rule 3 forbids it leaking into output — enforced in validator.js).
   const userPrompt = `PRODUCT INPUT:
 Name: ${product.name}
 Category: ${product.category}
-Raw source data: ${JSON.stringify(productForPrompt, null, 2)}
+Raw source data: ${JSON.stringify(product, null, 2)}
 
 Generate the requested fields now.`;
 
