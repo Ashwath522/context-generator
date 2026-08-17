@@ -91,6 +91,7 @@ async function generateBatch(products) {
     } catch (err) {
       results.push({ id: product.id, status: 'error', error: err.message });
     }
+    await new Promise(r => setTimeout(r, 15000));
   }
 
   return results;

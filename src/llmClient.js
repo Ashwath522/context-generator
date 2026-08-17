@@ -32,6 +32,7 @@ async function callGemini({ systemPrompt, userPrompt, jsonMode, responseSchema }
     contents,
     generationConfig: {
       temperature: 0.4,
+      thinkingConfig: { thinkingBudget: 0 },
       ...(jsonMode ? { responseMimeType: 'application/json', responseSchema: LLM_RESPONSE_SCHEMA } : {})
     }
   };
@@ -52,6 +53,12 @@ async function callGemini({ systemPrompt, userPrompt, jsonMode, responseSchema }
   }
 
   const data = await response.json();
+  const usage = data?.usageMetadata;
+  if (usage) {
+    console.log(
+      `[tokens] prompt=${usage.promptTokenCount} output=${usage.candidatesTokenCount} total=${usage.totalTokenCount}`
+    );
+  }
   const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
 
   if (!text) {

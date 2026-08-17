@@ -44,33 +44,53 @@ asked to generate. No markdown fences, no commentary, no extra fields.
 {{SCHEMA_SUBSET}}
 
 RULES:
-1. Never alter or contradict a factual value given in the source data
+1. description:
+   - summary: 3-4 sentences, warm and inviting.
+   - Priority order when source supports it:
+     1) Core function (e.g. extendable seating, capacity change)
+     2) Hosting / everyday use warmth (family dinners, gatherings)
+     3) Finish + easy care
+   - Numbers stay as digits (4 not four).
+   - Never invent facts. Reusing a short source phrase is fine when it
+     is the clearest way to state an important fact.
+   - Never mention price, tier, or premium/value labels.
+   - aesthetic_style, texture, best_use: one line each, grounded in
+     source facts, warm tone.
+2. specifications: NOT GENERATED. Will be copied from source exactly
+   (dimensions, primary_material, weight, assembly_required). Do NOT
+   generate or rewrite these fields—they are already provided.
+3. Never alter or contradict a factual value given in the source data
    (dimensions, material, weight) — these belong in specifications only
-   and must never be rewritten there.
-2. Every fact you mention from the source data must actually be present
+   and must never be rewritten in description.
+4. Every fact you mention from the source data must actually be present
    in the source data — never invent details. Reusing a short phrase or
    sentence from the source is fine when it's the clearest way to state
    an important fact; the priority is that required facts are present
    and the format rules below are followed, not avoiding all repetition.
-3. NUMBERS STAY AS DIGITS. Any numeric spec you reference in prose
+5. NUMBERS STAY AS DIGITS. Any numeric spec you reference in prose
    (dimensions, thickness, seating capacity, counts, sizes, etc.) must
    be written the same way the source gives it — digits, not spelled-out
    words. Write "4 Inches" / "4-seater" / "78 x 60 in", never "four
    inches" / "four-seater". This applies everywhere in the description,
    not just in specifications.
-4. The price tier ({{TIER}}) must shape your WORD CHOICE only — {{TIER_VOICE}}.
+6. The price tier ({{TIER}}) must shape your WORD CHOICE only — {{TIER_VOICE}}.
    Never state the tier name, never mention price, never imply a numeric
    price range.
-5. care_and_maintenance: select and politely rephrase ONLY from the
+7. care_and_maintenance: select and politely rephrase ONLY from the
    provided reference list below. Do not invent instructions. Exactly 3
    instructions, exactly 2 avoid items, polite phrasing required
    ("We recommend...", "It's best to avoid...").
    Reference for "{{MATCHED_CATEGORY}}":
    Instructions: {{MATCHED_INSTRUCTIONS}}
    Avoid: {{MATCHED_AVOID}}
-6. warranty:
-   - status_line: exactly 1 sentence with **Yes**/**No** and **duration** in
-     bold markdown using digits only (e.g. **12 months**).
+8. warranty:
+   - status_line: exactly 1 sentence, formatted EXACTLY like this template —
+     both the Yes/No AND the duration must each be individually wrapped in
+     ** **, like this real example:
+     "**Yes**, this product includes a **12 months** warranty against manufacturing defects."
+     (or "**No**, this product does not carry a manufacturer warranty." when
+     not applicable). Do not drop the bold Yes/No — it is required in every
+     status_line, not optional.
    - points: aim for 3 items when source facts allow:
        • 2 lines describing what IS covered (includes)
        • 1 line describing what is NOT covered (excludes)
@@ -82,7 +102,7 @@ RULES:
    - Never invent covered defects, parts, or exclusions not present in
      the source data.
    - Do not generate the link field.
-7. If a fact is genuinely missing and must be inferred, use plain,
+9. If a fact is genuinely missing and must be inferred, use plain,
    non-committal language — never state an inferred detail with
    unwarranted confidence.
 
