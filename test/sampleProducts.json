@@ -1,0 +1,79 @@
+[
+  {
+    "id": "sp-001",
+    "name": "Mango Wood Dining Table",
+    "category": "Dining",
+    "price": 18999,
+    "dimensions": "150cm L x 80cm W x 75cm H",
+    "primary_material": "Solid Mango Wood",
+    "weight": "32 kg",
+    "assembly_required": "Minimal assembly required (legs only)",
+    "warranty_months": 12
+  },
+  {
+    "id": "sp-002",
+    "name": "Oakwood Bookshelf",
+    "category": "Living Room",
+    "price": 6499,
+    "dimensions": "90cm L x 30cm W x 180cm H",
+    "primary_material": "Oak Wood Veneer",
+    "weight": "24 kg",
+    "assembly_required": "Guided assembly included",
+    "warranty_months": 6
+  },
+  {
+    "id": "sp-003",
+    "name": "Wrought Iron Bar Stool",
+    "category": "Dining",
+    "price": 3299,
+    "dimensions": "40cm Dia x 75cm H",
+    "primary_material": "Wrought Iron",
+    "weight": "6 kg",
+    "assembly_required": "None",
+    "warranty_months": 6
+  },
+  {
+    "id": "sp-004",
+    "name": "Velvet Accent Armchair",
+    "category": "Living Room",
+    "price": 22999,
+    "dimensions": "75cm L x 80cm W x 90cm H",
+    "primary_material": "Velvet Upholstery",
+    "weight": "18 kg",
+    "assembly_required": "No assembly required",
+    "warranty_months": 12
+  },
+  {
+    "id": "sp-005",
+    "name": "Teakwood Bedside Table",
+    "category": "Bedroom",
+    "price": 4999,
+    "dimensions": "40cm L x 40cm W x 55cm H",
+    "primary_material": "Teak Wood",
+    "weight": "9 kg",
+    "assembly_required": "None",
+    "warranty_months": 12
+  },
+  {
+    "id": "sp-006",
+    "name": "Tempered Glass Coffee Table",
+    "category": "Living Room",
+    "price": 9499,
+    "dimensions": "100cm L x 55cm W x 45cm H",
+    "primary_material": "Tempered Glass with Metal Frame",
+    "weight": "15 kg",
+    "assembly_required": "Guided assembly included",
+    "warranty_months": null
+  },
+  {
+    "id": "sp-007",
+    "name": "Handwoven Jute Table Runner",
+    "category": "Decor",
+    "price": 799,
+    "dimensions": "180cm L x 35cm W",
+    "primary_material": "Jute",
+    "weight": "0.4 kg",
+    "assembly_required": "None",
+    "warranty_months": null
+  }
+]

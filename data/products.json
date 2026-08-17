@@ -1,0 +1,13 @@
+[
+  {
+    "id": "prod-001",
+    "name": "Sheesham Wood Console Table",
+    "category": "Living Room",
+    "price": 11499,
+    "dimensions": "120cm L x 35cm W x 78cm H",
+    "primary_material": "Solid Sheesham Wood",
+    "weight": "20 kg",
+    "assembly_required": "Minimal assembly required (legs only)",
+    "warranty_months": 12
+  }
+]

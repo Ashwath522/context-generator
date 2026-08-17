@@ -1,0 +1,60 @@
+{
+  "description": {
+    "summary": "Wrought Iron Bar Stool brings a considered addition to any dining space, combining everyday usability with thoughtful design.",
+    "aesthetic_style": "Clean lines with a calm, understated presence.",
+    "texture": "Smooth to the touch with a natural, tactile finish.",
+    "best_use": "Well suited to everyday dining use, where both form and function matter."
+  },
+  "specifications": {
+    "dimensions": "40cm Dia x 75cm H",
+    "primary_material": "Wrought Iron",
+    "weight": "6 kg",
+    "assembly_required": "None"
+  },
+  "care_and_maintenance": {
+    "instructions": [
+      "We recommend you wipe down with a soft, dry cloth to remove dust.",
+      "We recommend you clean with a mild soap and water solution when needed.",
+      "We recommend you dry thoroughly after cleaning to prevent rust."
+    ],
+    "avoid": [
+      "It's best to avoid abrasive scrubbers or steel wool.",
+      "It's best to avoid prolonged exposure to moisture or humidity."
+    ]
+  },
+  "warranty": {
+    "applicable": true,
+    "duration_months": 6,
+    "status_line": "This product comes with a **Yes** warranty, valid for **12 months**.",
+    "points": [
+      "Covers manufacturing defects in materials and workmanship.",
+      "Excludes damage from misuse or normal wear and tear."
+    ],
+    "link": "https://example.com/warranty-policy-placeholder"
+  },
+  "returns": {
+    "window_days": "within **10 days**",
+    "condition": [
+      "Item must be unused and in original packaging",
+      "All original tags and labels must be attached",
+      "Proof of purchase is required"
+    ],
+    "policy_link": "https://example.com/returns-policy-placeholder"
+  },
+  "quality_promise": {
+    "statement": "Every dining product we offer is inspected for quality and built to stand up to everyday life.",
+    "highlights": [
+      "Backed by our 6-month warranty for added peace of mind.",
+      "Arrives ready to use, with no assembly required."
+    ],
+    "isi": {
+      "certified": false,
+      "label": "ISI Certified",
+      "logo": "static-asset-reference"
+    }
+  },
+  "_meta": {
+    "needs_review": false,
+    "care_category_matched": "Metal"
+  }
+}

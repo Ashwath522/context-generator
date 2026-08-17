@@ -1,0 +1,60 @@
+{
+  "description": {
+    "summary": "Handwoven Jute Table Runner brings a considered addition to any decor space, combining everyday usability with thoughtful design.",
+    "aesthetic_style": "Clean lines with a calm, understated presence.",
+    "texture": "Smooth to the touch with a natural, tactile finish.",
+    "best_use": "Well suited to everyday decor use, where both form and function matter."
+  },
+  "specifications": {
+    "dimensions": "180cm L x 35cm W",
+    "primary_material": "Jute",
+    "weight": "0.4 kg",
+    "assembly_required": "None"
+  },
+  "care_and_maintenance": {
+    "instructions": [
+      "We recommend you dust or wipe down regularly with a soft, dry cloth.",
+      "We recommend you clean spills promptly using a mild, non-abrasive cleaner.",
+      "We recommend you follow any care label or manufacturer guidance included with the product."
+    ],
+    "avoid": [
+      "It's best to avoid harsh chemical cleaners.",
+      "It's best to avoid excessive moisture or prolonged direct sunlight."
+    ]
+  },
+  "warranty": {
+    "applicable": true,
+    "duration_months": null,
+    "status_line": "This product comes with a **Yes** warranty, valid for **12 months**.",
+    "points": [
+      "Covers manufacturing defects in materials and workmanship.",
+      "Excludes damage from misuse or normal wear and tear."
+    ],
+    "link": "https://example.com/warranty-policy-placeholder"
+  },
+  "returns": {
+    "window_days": "within **7 days**",
+    "condition": [
+      "Item must be unused and in original packaging",
+      "All original tags and labels must be attached",
+      "Proof of purchase is required"
+    ],
+    "policy_link": "https://example.com/returns-policy-placeholder"
+  },
+  "quality_promise": {
+    "statement": "Every decor product we offer is inspected for quality and built to stand up to everyday life.",
+    "highlights": [
+      "Backed by our manufacturer warranty for added peace of mind.",
+      "Arrives ready to use, with no assembly required."
+    ],
+    "isi": {
+      "certified": false,
+      "label": "ISI Certified",
+      "logo": "static-asset-reference"
+    }
+  },
+  "_meta": {
+    "needs_review": true,
+    "care_category_matched": "General"
+  }
+}

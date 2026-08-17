@@ -1,0 +1,65 @@
+{
+  "Wood": {
+    "keywords": ["wood", "mango", "oak", "teak", "sheesham", "pine", "walnut", "acacia", "veneer"],
+    "instructions": [
+      "Dust regularly with a soft, dry cloth",
+      "Wipe up spills promptly with a slightly damp cloth",
+      "Apply a wood-safe polish or wax every few months",
+      "Use coasters or mats under hot or wet items",
+      "Keep the piece away from direct, prolonged sunlight"
+    ],
+    "avoid": [
+      "Avoid harsh chemical or ammonia-based cleaners",
+      "Avoid placing the piece near direct heat sources like radiators",
+      "Avoid dragging the piece across hard floors"
+    ]
+  },
+  "Metal": {
+    "keywords": ["metal", "iron", "steel", "aluminium", "aluminum", "brass", "wrought"],
+    "instructions": [
+      "Wipe down with a soft, dry cloth to remove dust",
+      "Clean with a mild soap and water solution when needed",
+      "Dry thoroughly after cleaning to prevent rust"
+    ],
+    "avoid": [
+      "Avoid abrasive scrubbers or steel wool",
+      "Avoid prolonged exposure to moisture or humidity"
+    ]
+  },
+  "Fabric": {
+    "keywords": ["fabric", "cotton", "linen", "velvet", "upholstery", "polyester", "boucle"],
+    "instructions": [
+      "Vacuum regularly using a soft brush attachment",
+      "Blot spills immediately with a clean, absorbent cloth",
+      "Rotate cushions periodically for even wear"
+    ],
+    "avoid": [
+      "Avoid rubbing stains, as this can spread them",
+      "Avoid direct sunlight for extended periods to prevent fading"
+    ]
+  },
+  "Glass": {
+    "keywords": ["glass", "tempered glass", "mirror"],
+    "instructions": [
+      "Clean with a lint-free cloth and a glass-safe cleaner",
+      "Wipe away fingerprints and smudges regularly",
+      "Handle edges carefully during cleaning"
+    ],
+    "avoid": [
+      "Avoid abrasive pads or powders on the surface",
+      "Avoid placing heavy objects directly on glass edges"
+    ]
+  },
+  "General": {
+    "keywords": [],
+    "instructions": [
+      "Dust or wipe down regularly with a soft, dry cloth",
+      "Clean spills promptly using a mild, non-abrasive cleaner",
+      "Follow any care label or manufacturer guidance included with the product"
+    ],
+    "avoid": [
+      "Avoid harsh chemical cleaners",
+      "Avoid excessive moisture or prolonged direct sunlight"
+    ]
+  }
+}

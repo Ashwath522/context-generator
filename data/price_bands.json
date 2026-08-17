@@ -1,0 +1,7 @@
+{
+  "Dining": { "good_max": 8000, "mid_max": 25000 },
+  "Living Room": { "good_max": 10000, "mid_max": 35000 },
+  "Lighting & Decor": { "good_max": 1500, "mid_max": 5000 },
+  "Storage": { "good_max": 12000, "mid_max": 40000 },
+  "Default": { "good_max": 5000, "mid_max": 20000 }
+}

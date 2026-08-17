@@ -1,0 +1,47 @@
+{
+  "Dining": {
+    "window_days": 10,
+    "condition": [
+      "Item must be unused and in original packaging",
+      "All original tags and labels must be attached",
+      "Proof of purchase is required"
+    ],
+    "policy_link": "https://example.com/returns-policy-placeholder"
+  },
+  "Living Room": {
+    "window_days": 15,
+    "condition": [
+      "Item must be unused and in original packaging",
+      "All original tags and labels must be attached",
+      "Proof of purchase is required"
+    ],
+    "policy_link": "https://example.com/returns-policy-placeholder"
+  },
+  "Bedroom": {
+    "window_days": 15,
+    "condition": [
+      "Item must be unused and in original packaging",
+      "All original tags and labels must be attached",
+      "Proof of purchase is required"
+    ],
+    "policy_link": "https://example.com/returns-policy-placeholder"
+  },
+  "Decor": {
+    "window_days": 7,
+    "condition": [
+      "Item must be unused and in original packaging",
+      "All original tags and labels must be attached",
+      "Proof of purchase is required"
+    ],
+    "policy_link": "https://example.com/returns-policy-placeholder"
+  },
+  "Default": {
+    "window_days": 10,
+    "condition": [
+      "Item must be unused and in original packaging",
+      "All original tags and labels must be attached",
+      "Proof of purchase is required"
+    ],
+    "policy_link": "https://example.com/returns-policy-placeholder"
+  }
+}

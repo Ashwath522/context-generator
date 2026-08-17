@@ -1,0 +1,60 @@
+{
+  "description": {
+    "summary": "Teakwood Bedside Table brings a considered addition to any bedroom space, combining everyday usability with thoughtful design.",
+    "aesthetic_style": "Clean lines with a calm, understated presence.",
+    "texture": "Smooth to the touch with a natural, tactile finish.",
+    "best_use": "Well suited to everyday bedroom use, where both form and function matter."
+  },
+  "specifications": {
+    "dimensions": "40cm L x 40cm W x 55cm H",
+    "primary_material": "Teak Wood",
+    "weight": "9 kg",
+    "assembly_required": "None"
+  },
+  "care_and_maintenance": {
+    "instructions": [
+      "We recommend you dust regularly with a soft, dry cloth.",
+      "We recommend you wipe up spills promptly with a slightly damp cloth.",
+      "We recommend you apply a wood-safe polish or wax every few months."
+    ],
+    "avoid": [
+      "It's best to avoid harsh chemical or ammonia-based cleaners.",
+      "It's best to avoid placing the piece near direct heat sources like radiators."
+    ]
+  },
+  "warranty": {
+    "applicable": true,
+    "duration_months": 12,
+    "status_line": "This product comes with a **Yes** warranty, valid for **12 months**.",
+    "points": [
+      "Covers manufacturing defects in materials and workmanship.",
+      "Excludes damage from misuse or normal wear and tear."
+    ],
+    "link": "https://example.com/warranty-policy-placeholder"
+  },
+  "returns": {
+    "window_days": "within **15 days**",
+    "condition": [
+      "Item must be unused and in original packaging",
+      "All original tags and labels must be attached",
+      "Proof of purchase is required"
+    ],
+    "policy_link": "https://example.com/returns-policy-placeholder"
+  },
+  "quality_promise": {
+    "statement": "Every bedroom product we offer is inspected for quality and built to stand up to everyday life.",
+    "highlights": [
+      "Backed by our 12-month warranty for added peace of mind.",
+      "Arrives ready to use, with no assembly required."
+    ],
+    "isi": {
+      "certified": false,
+      "label": "ISI Certified",
+      "logo": "static-asset-reference"
+    }
+  },
+  "_meta": {
+    "needs_review": false,
+    "care_category_matched": "Wood"
+  }
+}

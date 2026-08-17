@@ -1,0 +1,14 @@
+{
+  "name": "product-content-generator",
+  "version": "1.0.0",
+  "description": "AI-powered product marketing content generator with a prompt-injection feedback loop. Test mode (mock LLM) and production mode (Gemini REST API) share the same code path.",
+  "main": "src/generate.js",
+  "scripts": {
+    "test": "node test/runTest.js",
+    "generate": "node src/generate.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED"
+}

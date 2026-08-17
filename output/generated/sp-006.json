@@ -1,0 +1,60 @@
+{
+  "description": {
+    "summary": "Tempered Glass Coffee Table brings a considered addition to any living room space, combining everyday usability with thoughtful design.",
+    "aesthetic_style": "Clean lines with a calm, understated presence.",
+    "texture": "Smooth to the touch with a natural, tactile finish.",
+    "best_use": "Well suited to everyday living room use, where both form and function matter."
+  },
+  "specifications": {
+    "dimensions": "100cm L x 55cm W x 45cm H",
+    "primary_material": "Tempered Glass with Metal Frame",
+    "weight": "15 kg",
+    "assembly_required": "Guided assembly included"
+  },
+  "care_and_maintenance": {
+    "instructions": [
+      "We recommend you wipe down with a soft, dry cloth to remove dust.",
+      "We recommend you clean with a mild soap and water solution when needed.",
+      "We recommend you dry thoroughly after cleaning to prevent rust."
+    ],
+    "avoid": [
+      "It's best to avoid abrasive scrubbers or steel wool.",
+      "It's best to avoid prolonged exposure to moisture or humidity."
+    ]
+  },
+  "warranty": {
+    "applicable": true,
+    "duration_months": null,
+    "status_line": "This product comes with a **Yes** warranty, valid for **12 months**.",
+    "points": [
+      "Covers manufacturing defects in materials and workmanship.",
+      "Excludes damage from misuse or normal wear and tear."
+    ],
+    "link": "https://example.com/warranty-policy-placeholder"
+  },
+  "returns": {
+    "window_days": "within **15 days**",
+    "condition": [
+      "Item must be unused and in original packaging",
+      "All original tags and labels must be attached",
+      "Proof of purchase is required"
+    ],
+    "policy_link": "https://example.com/returns-policy-placeholder"
+  },
+  "quality_promise": {
+    "statement": "Every living room product we offer is inspected for quality and built to stand up to everyday life.",
+    "highlights": [
+      "Backed by our manufacturer warranty for added peace of mind.",
+      "Comes with guided assembly support, so setup is simple."
+    ],
+    "isi": {
+      "certified": false,
+      "label": "ISI Certified",
+      "logo": "static-asset-reference"
+    }
+  },
+  "_meta": {
+    "needs_review": false,
+    "care_category_matched": "Metal"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "description": {
+    "summary": "Velvet Accent Armchair brings a considered addition to any living room space, combining everyday usability with thoughtful design.",
+    "aesthetic_style": "Clean lines with a calm, understated presence.",
+    "texture": "Smooth to the touch with a natural, tactile finish.",
+    "best_use": "Well suited to everyday living room use, where both form and function matter."
+  },
+  "specifications": {
+    "dimensions": "75cm L x 80cm W x 90cm H",
+    "primary_material": "Velvet Upholstery",
+    "weight": "18 kg",
+    "assembly_required": "No assembly required"
+  },
+  "care_and_maintenance": {
+    "instructions": [
+      "We recommend you vacuum regularly using a soft brush attachment.",
+      "We recommend you blot spills immediately with a clean, absorbent cloth.",
+      "We recommend you rotate cushions periodically for even wear."
+    ],
+    "avoid": [
+      "It's best to avoid rubbing stains, as this can spread them.",
+      "It's best to avoid direct sunlight for extended periods to prevent fading."
+    ]
+  },
+  "warranty": {
+    "applicable": true,
+    "duration_months": 12,
+    "status_line": "This product comes with a **Yes** warranty, valid for **12 months**.",
+    "points": [
+      "Covers manufacturing defects in materials and workmanship.",
+      "Excludes damage from misuse or normal wear and tear."
+    ],
+    "link": "https://example.com/warranty-policy-placeholder"
+  },
+  "returns": {
+    "window_days": "within **15 days**",
+    "condition": [
+      "Item must be unused and in original packaging",
+      "All original tags and labels must be attached",
+      "Proof of purchase is required"
+    ],
+    "policy_link": "https://example.com/returns-policy-placeholder"
+  },
+  "quality_promise": {
+    "statement": "Every living room product we offer is inspected for quality and built to stand up to everyday life.",
+    "highlights": [
+      "Backed by our 12-month warranty for added peace of mind."
+    ],
+    "isi": {
+      "certified": false,
+      "label": "ISI Certified",
+      "logo": "static-asset-reference"
+    }
+  },
+  "_meta": {
+    "needs_review": false,
+    "care_category_matched": "Fabric"
+  }
+}
