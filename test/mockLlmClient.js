@@ -54,7 +54,7 @@ function mockGenerateContent({ systemPrompt, userPrompt }) {
 
   return Promise.resolve({
     description: {
-      summary: `${name} brings a considered addition to any ${category.toLowerCase()} space, combining everyday usability with thoughtful design. This is the ${selectedSize} variant${otherSizes.length ? ` and is also available in ${otherSizes.join(', ')}` : ''}. This ${selectedColor} finish suits calm, lived-in rooms${otherColors.length ? ` and is also available in ${otherColors.join(', ')}` : ''}.`,
+      summary: `${name} brings a more complete, inviting feel to any ${category.toLowerCase()} space, pairing everyday usability with a composed design that is easy to imagine at home. The look is calm and considered, with a smooth tactile presence that helps the piece feel useful without making the room feel crowded. This is the ${selectedSize} variant, chosen for shoppers who want the right fit for daily comfort${otherSizes.length ? `, and it is also available in ${otherSizes.join(', ')}` : ''}. This ${selectedColor} finish gives the room a grounded, easy-to-style character${otherColors.length ? `, and it is also available in ${otherColors.join(', ')}` : ''}.`,
       aesthetic_style: 'Clean lines with a calm, understated presence.',
       texture: 'Smooth to the touch with a natural, tactile finish.',
       best_use: `Well suited to everyday ${category.toLowerCase()} use, where both form and function matter.`
