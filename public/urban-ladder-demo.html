@@ -248,6 +248,24 @@
       max-width: 880px;
     }
 
+    .promise-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+      gap: 14px;
+      max-width: 900px;
+    }
+
+    .promise-card {
+      border: 1px solid var(--line);
+      padding: 16px;
+      background: #fff;
+    }
+
+    .promise-card strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
     .copy-block p {
       margin: 0;
     }
@@ -302,6 +320,10 @@
       }
 
       dl {
+        grid-template-columns: 1fr;
+      }
+
+      .promise-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -443,7 +465,7 @@
         warranty: {
           applicable: true,
           duration_months: 12,
-          status_line: 'This product includes a **Yes** warranty for **12 months**.',
+          status_line: '**Yes**, it has a warranty of **12 months**.',
           points: [
             'Covers manufacturing defects under normal household use.',
             'Covers defects in material and workmanship as per policy.',
@@ -461,10 +483,11 @@
           policy_link: 'https://example.com/returns-policy-placeholder'
         },
         quality_promise: {
-          statement: 'Every dining table product we offer is inspected for quality and built to stand up to everyday life.',
+          statement: 'Every dining table product is checked for finish, fit, and everyday usability before it reaches your home.',
           highlights: [
-            'Backed by our 12-month warranty for added peace of mind.',
-            'Comes with assembly support, so setup is simple.'
+            'Designed to feel dependable in daily use, with details reviewed for a cleaner ownership experience.',
+            'Supported by a 12-month warranty, so the purchase feels considered after delivery too.',
+            'Built for a properly finished setup with assembly handled as part of the ownership journey.'
           ],
           isi: {
             certified: false,
@@ -477,6 +500,10 @@
 
     function renderList(title, values) {
       return `<p><strong>${title}</strong></p><ul class="list-block">${values.map((value) => `<li>${value}</li>`).join('')}</ul>`;
+    }
+
+    function renderBold(text) {
+      return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     }
 
     function renderDescription(item) {
@@ -497,13 +524,19 @@
     }
 
     function renderTabContent(item) {
+      const qualityCards = item.quality_promise.highlights.map((value, index) => `
+        <div class="promise-card">
+          <strong>${['Checked Finish', 'Warranty Support', 'Setup Confidence'][index] || 'Quality Detail'}</strong>
+          <span>${value}</span>
+        </div>
+      `).join('');
       const views = {
         description: renderDescription(item),
         specifications: renderSpecs(item),
         care: `<div class="copy-block">${renderList('Instructions', item.care_and_maintenance.instructions)}${renderList('Avoid', item.care_and_maintenance.avoid)}</div>`,
-        warranty: `<div class="copy-block"><p>${item.warranty.status_line}</p>${renderList('Coverage', item.warranty.points)}</div>`,
-        returns: `<div class="copy-block"><p>Eligible ${item.returns.window_days}.</p>${renderList('Condition', item.returns.condition)}</div>`,
-        quality: `<div class="copy-block"><p>${item.quality_promise.statement}</p>${renderList('Highlights', item.quality_promise.highlights)}<p>${item.quality_promise.isi.label}: ${item.quality_promise.isi.certified ? 'Yes' : 'No'}</p></div>`
+        warranty: `<div class="copy-block"><p>${renderBold(item.warranty.status_line)}</p>${renderList('Coverage', item.warranty.points)}</div>`,
+        returns: `<div class="copy-block"><p>${renderBold(`Eligible ${item.returns.window_days}.`)}</p>${renderList('Condition', item.returns.condition)}</div>`,
+        quality: `<div class="copy-block"><p>${item.quality_promise.statement}</p><div class="promise-grid">${qualityCards}</div><p>${item.quality_promise.isi.label}: ${item.quality_promise.isi.certified ? 'Yes' : 'No'}</p></div>`
       };
       document.getElementById('tabPanel').innerHTML = views[state.tab] || views.description;
     }

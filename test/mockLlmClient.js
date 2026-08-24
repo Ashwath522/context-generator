@@ -65,7 +65,7 @@ function mockGenerateContent({ systemPrompt, userPrompt }) {
     },
     warranty: {
       applicable: true,
-      status_line: 'This product includes a **Yes** warranty for **12 months**.',
+      status_line: '**Yes**, it has a warranty of **12 months**.',
       points: [
         'Covers manufacturing defects in materials and workmanship.',
         'Covers defects in the production finish under normal use.',

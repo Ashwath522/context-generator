@@ -39,7 +39,7 @@ async function generateOne(product, priceBands, attempt = 1) {
   const warranty = {
     applicable,
     duration_months: applicable ? (product.warranty_months || null) : null,
-    status_line: llmOutput.warranty?.status_line || '',
+    status_line: `**${applicable ? 'Yes' : 'No'}**, it has a warranty of **${applicable ? (product.warranty_months || 0) : 0} months**.`,
     points: (llmOutput.warranty?.points || []).slice(0, 4),
     link: PLACEHOLDER_LINKS.warranty
   };

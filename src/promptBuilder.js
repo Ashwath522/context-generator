@@ -76,7 +76,10 @@ RULES:
      - **N months** — digits, a space, then the literal word "months"
        (e.g. **12 months** — never **12-month**, never **twelve months**,
        never wrap other words inside the same bold span).
-   Example: "**Yes**, this product is covered by a **12 months** warranty."
+   Required phrasing when warranty applies:
+   "**Yes**, it has a warranty of **N months**."
+   Required phrasing when warranty does not apply:
+   "**No**, it has a warranty of **0 months**."
    points: up to 4, only from real source-provided facts, never invented
    to pad the count.
 7. If a fact is genuinely missing and must be inferred, use plain,

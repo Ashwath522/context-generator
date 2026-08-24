@@ -113,8 +113,8 @@ function validateItem(item, sourceProduct) {
     if (points.length > 4) {
       errors.push('warranty.points must have at most 4 items');
     }
-    if (!item.warranty.status_line || !/^.*\*\*(Yes|No)\*\*.*\*\*\d+\s+months\*\*.*$/.test(item.warranty.status_line.trim())) {
-      errors.push('warranty.status_line must be exactly 1 sentence with **Yes**/**No** and **duration** in bold markdown using digits only');
+    if (!item.warranty.status_line || !/^\*\*(Yes|No)\*\*, it has a warranty of \*\*\d+\s+months\*\*\.$/.test(item.warranty.status_line.trim())) {
+      errors.push('warranty.status_line must be exactly: "**Yes**, it has a warranty of **N months**." or "**No**, it has a warranty of **0 months**."');
     }
     if (points.length > 0 && points.some((point) => typeof point !== 'string' || !point.trim())) {
       errors.push('warranty.points must contain only non-empty strings');

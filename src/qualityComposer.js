@@ -3,24 +3,28 @@
 // generated/known elsewhere (warranty, assembly) — never invented perks.
 
 function buildQualityPromise(category, warranty, specifications) {
-  const statement = `Every ${category.toLowerCase()} product we offer is inspected for quality and built to stand up to everyday life.`;
+  const statement = `Every ${category.toLowerCase()} product is checked for finish, fit, and everyday usability before it reaches your home.`;
 
   const highlights = [];
+
+  highlights.push('Designed to feel dependable in daily use, with details reviewed for a cleaner ownership experience.');
 
   if (warranty && warranty.applicable) {
     const duration = warranty.duration_months;
     highlights.push(
       duration
-        ? `Backed by our ${duration}-month warranty for added peace of mind.`
+        ? `Supported by a ${duration}-month warranty, so the purchase feels considered after delivery too.`
         : 'Backed by our manufacturer warranty for added peace of mind.'
     );
   }
 
   const assembly = String((specifications && specifications.assembly_required) || '').toLowerCase();
   if (assembly.includes('free') || assembly.includes('guided') || assembly.includes('included')) {
-    highlights.push('Comes with guided assembly support, so setup is simple.');
+    highlights.push('Includes guided assembly support to help the product settle into your space smoothly.');
+  } else if (assembly.includes('requires') || assembly.includes('carpenter')) {
+    highlights.push('Built for a properly finished setup with assembly handled as part of the ownership journey.');
   } else if (assembly.includes('none') || assembly.includes('not required') || assembly === 'no') {
-    highlights.push('Arrives ready to use, with no assembly required.');
+    highlights.push('Arrives ready to use, making setup simple from the start.');
   }
 
   return {
