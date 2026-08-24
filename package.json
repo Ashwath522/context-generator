@@ -5,7 +5,8 @@
   "main": "src/generate.js",
   "scripts": {
     "test": "node test/runTest.js",
-    "generate": "node src/generate.js"
+    "generate": "node src/generate.js",
+    "generate:paste": "node scripts/generateFromPaste.js"
   },
   "engines": {
     "node": ">=18"

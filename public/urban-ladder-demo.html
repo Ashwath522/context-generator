@@ -423,9 +423,10 @@
       const otherFinishes = finishes.filter((item) => item.sv !== finish.sv).map((item) => item.label);
 
       return {
-        1: 'The Caribu dining table blends everyday utility with a polished extendable design for flexible hosting. Its clean profile, smooth touch, and space-conscious use case are kept together in the summary as preferred.',
-        2: `This is the ${size.label} size and is also available in ${otherSizes.join(', ')}.`,
-        3: `This is the ${finish.label} finish, which ${finish.reason}, and it is also available in ${otherFinishes.join(', ')}.`
+        1: 'The Caribu dining table brings a clean, polished aesthetic to the dining area, with an extendable design that makes the room feel ready for both everyday meals and planned hosting.',
+        2: 'Its glass surface gives a smooth tactile feel, while the refined high-gloss impression helps the table look composed without making the space feel heavy.',
+        3: `This is the ${size.label} size, giving shoppers a flexible fit for daily use and guest seating, and it is also available in ${otherSizes.join(', ')}.`,
+        4: `This is the ${finish.label} finish, which ${finish.reason}, and it is also available in ${otherFinishes.join(', ')}, making it a confident choice for a home that needs style and practical adaptability.`
       };
     }
 
@@ -437,7 +438,7 @@
       return {
         description: {
           preferred_json: summary,
-          summary: `${summary[1]} ${summary[2]} ${summary[3]}`,
+          summary: `${summary[1]} ${summary[2]} ${summary[3]} ${summary[4]}`,
           aesthetic_style: 'Clean, contemporary lines with a restrained dining-room presence.',
           texture: 'Smooth glass feel with a polished high-gloss impression.',
           best_use: 'Made for everyday meals and flexible hosting in compact or family dining spaces.'
@@ -513,6 +514,7 @@
           <p><strong>1.</strong> ${json[1]}</p>
           <p><strong>2.</strong> ${json[2]}</p>
           <p><strong>3.</strong> ${json[3]}</p>
+          <p><strong>4.</strong> ${json[4]}</p>
         </div>
       `;
     }
@@ -552,7 +554,7 @@
       document.getElementById('price').textContent = size.price;
       document.getElementById('mrp').textContent = `MRP ${size.mrp}`;
       document.getElementById('discount').textContent = size.discount;
-      document.getElementById('summary').innerHTML = `${json[1]}<br>${json[2]}<br>${json[3]}`;
+      document.getElementById('summary').innerHTML = `${json[1]}<br>${json[2]}<br>${json[3]}<br>${json[4]}`;
 
       document.getElementById('finishOptions').innerHTML = finishes.map((item) => `
         <button class="swatch ${item.sv === state.sv ? 'active' : ''}" type="button" data-sv="${item.sv}" aria-label="${item.label}">

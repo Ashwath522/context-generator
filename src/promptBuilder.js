@@ -105,31 +105,33 @@ RULES:
    THAT exact variant only. Never mention other sizes, seat counts, or
    colors that are not this specific variant, EXCEPT where rule 10
    explicitly allows naming sibling variants that were given to you.
-10. SUMMARY STRUCTURE — exactly 3 to 4 sentences, in this order. Aim for
-    70 to 105 words total, so the summary feels substantial and not thin.
+10. SUMMARY STRUCTURE — exactly 4 sentences, in this order. Aim for
+    90 to 125 words total, so the summary feels substantial and never thin.
     Each sentence should earn its place by adding a clear shopper benefit.
     Never
     include the raw L x W x H / m / cm dimension string anywhere in
     summary — that lives only in specifications.
       1. A richer product overview: what the product is, its main design
-         appeal, the tactile/texture impression, where it fits, and why
-         someone would want it in their home. Include its primary
+         appeal, and its aesthetic character. Include its primary
          size/capacity fact
          stated in digits and in the vocabulary appropriate to its
          category (e.g. "King size", "3 to 4 Seater", "Queen size") —
          use the primary size/seating variant field from PRODUCT INPUT.
          This sentence may be longer than the others, but keep it natural.
-      2. Repeat that exact size/variant briefly, explain the practical
+      2. Describe the texture/tactile feel and comfort or usability
+         impression, grounded only in product facts or cautious sensory
+         language. This is where "what texture it has" must appear.
+      3. Repeat that exact size/variant briefly, explain the practical
          benefit of this selected size/capacity, and — ONLY if PRODUCT
          INPUT lists other sizes this product is "also available in" —
          name those other sizes too. Never invent sizes that were not
          explicitly listed as available.
-      3. State this exact color/finish and — ONLY if PRODUCT INPUT
+      4. State this exact color/finish and — ONLY if PRODUCT INPUT
          lists other available colors — name those too, then add one
          persuasive clause on why THIS color/finish suits a particular
-         room or use case. This is a style opinion, not a factual claim —
-         keep it plausible, never invent a technical property to justify
-         it.
+         room or use case, and why the shopper should feel confident
+         buying it. This is a style opinion, not a factual claim — keep
+         it plausible, never invent a technical property to justify it.
    None of these facts may be repeated in aesthetic_style, texture, or
    best_use (see rule 8) — summary is the only field that states them.
 11. PREFERRED SUMMARY JSON MEANING. The summary string must read like
@@ -137,11 +139,11 @@ RULES:
     output still preserves every existing top-level JSON field in the
     schema:
       "1": product overview, 3-4 lines worth of content, including the
-           aesthetic, texture, best-use idea, and a gentle reason to buy
-           here only.
-      "2": selected size/capacity, why that size is useful, plus any
+           aesthetic and a gentle reason to buy.
+      "2": texture/tactile feel and comfort or usability impression.
+      "3": selected size/capacity, why that size is useful, plus any
            explicitly provided sibling sizes/capacities.
-      "3": selected color/finish, why this exact color/finish suits the
+      "4": selected color/finish, why this exact color/finish suits the
            room/use case in a shopper-friendly way, plus any explicitly
            provided sibling colors.
     Do not remove care, warranty, returns, quality_promise, or

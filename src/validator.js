@@ -24,11 +24,15 @@ function validateItem(item, sourceProduct) {
     for (const field of ['summary', 'aesthetic_style', 'texture', 'best_use']) {
       if (!item.description[field]) errors.push(`Missing description.${field}`);
     }
-    // Summary should be 3-4 sentences.
+    // Summary should be exactly 4 substantial sentences.
     const summary = item.description.summary || '';
     const sentenceCount = (summary.match(/[.!?]/g) || []).length;
-    if (sentenceCount < 3 || sentenceCount > 4) {
-      errors.push(`description.summary should be 3-4 sentences; found ${sentenceCount}`);
+    if (sentenceCount !== 4) {
+      errors.push(`description.summary should be exactly 4 sentences; found ${sentenceCount}`);
+    }
+    const wordCount = summary.trim().split(/\s+/).filter(Boolean).length;
+    if (wordCount < 90) {
+      errors.push(`description.summary should be at least 90 words; found ${wordCount}`);
     }
     if (RAW_DIMENSION_RE.test(summary)) {
       errors.push('description.summary must not include raw dimension strings');

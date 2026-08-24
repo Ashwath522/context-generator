@@ -97,7 +97,7 @@ async function generateBatch(products) {
   return results;
 }
 
-module.exports = { generateOne, generateBatch };
+module.exports = { generateOne, generateBatch, loadPriceBands };
 
 if (require.main === module) {
   const productsPath = path.join(__dirname, '..', 'data', 'products.json');

@@ -1,0 +1,60 @@
+{
+  "description": {
+    "summary": "The Stanhope bed provides a spacious King sleeping surface supported by a convenient hydraulic storage mechanism. This King size frame is also available in a Queen size option to suit varying room layouts. Finished in Urban Grey, this piece is also offered in Baltic Blue, Shitake Beige, and Sienna Brown, providing a neutral foundation that anchors a contemporary bedroom retreat.",
+    "aesthetic_style": "Refined, streamlined, and understated",
+    "texture": "A combination of firm, structured surfaces paired with supple, padded upholstery",
+    "best_use": "Ideal for primary suites requiring integrated organization and a polished, cohesive look"
+  },
+  "specifications": {
+    "dimensions": "1.79 m L x 2.42 m W x 99.83 cm H",
+    "primary_material": "Engineered Wood (Particle Board), Leatherette upholstery",
+    "weight": "193 kg",
+    "assembly_required": "Requires Assembly",
+    "seating_capacity": "King",
+    "color_finish": "Urban Grey"
+  },
+  "care_and_maintenance": {
+    "instructions": [
+      "We recommend dusting regularly with a soft, dry cloth",
+      "It is best to wipe up spills promptly with a slightly damp cloth",
+      "We recommend using coasters or mats under hot or wet items"
+    ],
+    "avoid": [
+      "It is best to avoid harsh chemical or ammonia-based cleaners",
+      "It is best to avoid dragging the piece across hard floors"
+    ]
+  },
+  "warranty": {
+    "applicable": true,
+    "duration_months": 12,
+    "status_line": "**Yes**, this product is covered by a **12 months** warranty.",
+    "points": [
+      "Covers manufacturing defects under standard use conditions"
+    ],
+    "link": "https://example.com/warranty-policy-placeholder"
+  },
+  "returns": {
+    "window_days": "within **15 days**",
+    "condition": [
+      "Item must be unused and in original packaging",
+      "All original tags and labels must be attached",
+      "Proof of purchase is required"
+    ],
+    "policy_link": "https://example.com/returns-policy-placeholder"
+  },
+  "quality_promise": {
+    "statement": "Every bedroom product we offer is inspected for quality and built to stand up to everyday life.",
+    "highlights": [
+      "Backed by our 12-month warranty for added peace of mind."
+    ],
+    "isi": {
+      "certified": false,
+      "label": "ISI Certified",
+      "logo": "static-asset-reference"
+    }
+  },
+  "_meta": {
+    "needs_review": false,
+    "care_category_matched": "Wood"
+  }
+}
