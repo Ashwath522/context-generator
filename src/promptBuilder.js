@@ -120,6 +120,19 @@ RULES:
          to justify it.
    None of these facts may be repeated in aesthetic_style, texture, or
    best_use (see rule 8) — summary is the only field that states them.
+11. PREFERRED SUMMARY JSON MEANING. The summary string must read like
+    these 3 numbered JSON values joined as sentences, while the final
+    output still preserves every existing top-level JSON field in the
+    schema:
+      "1": product overview, 2-3 lines worth of content, including the
+           aesthetic, texture, and best-use idea here only.
+      "2": selected size/capacity plus any explicitly provided sibling
+           sizes/capacities.
+      "3": selected color/finish, why this exact color/finish suits the
+           room/use case, plus any explicitly provided sibling colors.
+    Do not remove care, warranty, returns, quality_promise, or
+    specifications. Only description.summary changes per variant; the
+    non-variant factual blocks remain preserved from source/lookup rules.
 
 LEARNED PREFERENCES (feedback-derived rules):
 {{LEARNED_RULES}}`;

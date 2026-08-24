@@ -3,16 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Variant Summary Demo</title>
+  <title>Urban Ladder Variant Demo</title>
   <style>
     :root {
       color-scheme: light;
-      --ink: #24211e;
-      --muted: #6f6860;
-      --line: #ddd8d0;
-      --brand: #8f4d2f;
-      --soft: #f8f6f2;
+      --ink: #2b2520;
+      --muted: #70675f;
+      --line: #ded8cf;
+      --brand: #8b4a2f;
+      --soft: #f7f4ef;
       --green: #1f6f5b;
+      --surface: #fffaf1;
     }
 
     * {
@@ -69,7 +70,8 @@
       align-content: start;
     }
 
-    .thumb, .hero {
+    .thumb,
+    .hero {
       border: 1px solid var(--line);
       background: var(--soft);
       overflow: hidden;
@@ -110,8 +112,13 @@
       background: #434343;
     }
 
-    .leg.left { left: 22%; }
-    .leg.right { right: 22%; }
+    .leg.left {
+      left: 22%;
+    }
+
+    .leg.right {
+      right: 22%;
+    }
 
     .meta {
       display: grid;
@@ -137,7 +144,8 @@
       margin-bottom: 10px;
     }
 
-    .swatches, .sizes {
+    .swatches,
+    .sizes {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
@@ -220,12 +228,36 @@
       border: 0;
       border-bottom: 3px solid transparent;
       padding: 12px 16px;
+      color: var(--muted);
     }
 
     .tabbar button.active {
       outline: 0;
       border-bottom-color: var(--brand);
       color: var(--brand);
+    }
+
+    .content-panel {
+      min-height: 180px;
+      line-height: 1.6;
+    }
+
+    .copy-block {
+      display: grid;
+      gap: 14px;
+      max-width: 880px;
+    }
+
+    .copy-block p {
+      margin: 0;
+    }
+
+    .list-block {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding-left: 18px;
+      max-width: 860px;
     }
 
     dl {
@@ -238,6 +270,7 @@
     dt {
       color: var(--muted);
       font-size: 13px;
+      text-transform: capitalize;
     }
 
     dd {
@@ -283,7 +316,7 @@
   <main>
     <section class="gallery" aria-label="Product gallery">
       <div class="thumbs" id="thumbs"></div>
-      <div class="hero" id="hero">
+      <div class="hero">
         <div class="table-art" aria-hidden="true">
           <div class="top"></div>
           <div class="leg left"></div>
@@ -317,14 +350,14 @@
 
     <section class="tabs">
       <div class="tabbar">
-        <button class="active" type="button">Description</button>
-        <button type="button">Specifications</button>
-        <button type="button">Care & Maintenance</button>
-        <button type="button">Warranty</button>
-        <button type="button">Returns</button>
-        <button type="button">Quality Promise</button>
+        <button class="active" type="button" data-tab="description">Description</button>
+        <button type="button" data-tab="specifications">Specifications</button>
+        <button type="button" data-tab="care">Care & Maintenance</button>
+        <button type="button" data-tab="warranty">Warranty</button>
+        <button type="button" data-tab="returns">Returns</button>
+        <button type="button" data-tab="quality">Quality Promise</button>
       </div>
-      <dl id="specs"></dl>
+      <div class="content-panel" id="tabPanel"></div>
     </section>
   </main>
 
@@ -341,9 +374,11 @@
       { sv: 'white-marble-high-gloss', label: 'White Marble High Gloss', color: '#ece7de', reason: 'brings a refined look to family dining' }
     ];
 
+    const params = new URLSearchParams(location.search);
     const state = {
-      sp: new URLSearchParams(location.search).get('sp') || '4-to-6',
-      sv: new URLSearchParams(location.search).get('sv') || 'white-high-gloss'
+      sp: params.get('sp') || '4-to-6',
+      sv: params.get('sv') || 'white-high-gloss',
+      tab: params.get('tab') || 'description'
     };
 
     function selectedSize() {
@@ -355,8 +390,8 @@
     }
 
     function updateUrl() {
-      const params = new URLSearchParams({ sp: state.sp, sv: state.sv });
-      history.replaceState(null, '', `${location.pathname}?${params.toString()}`);
+      const nextParams = new URLSearchParams({ sp: state.sp, sv: state.sv, tab: state.tab });
+      history.replaceState(null, '', `${location.pathname}?${nextParams.toString()}`);
     }
 
     function summaryJson() {
@@ -366,16 +401,118 @@
       const otherFinishes = finishes.filter((item) => item.sv !== finish.sv).map((item) => item.label);
 
       return {
-        1: 'The Caribu dining table blends everyday utility with a polished extendable design for flexible hosting. Its clean profile and smooth surface bring the aesthetic, texture, and best-use context into one compact product summary.',
+        1: 'The Caribu dining table blends everyday utility with a polished extendable design for flexible hosting. Its clean profile, smooth touch, and space-conscious use case are kept together in the summary as preferred.',
         2: `This is the ${size.label} size and is also available in ${otherSizes.join(', ')}.`,
         3: `This is the ${finish.label} finish, which ${finish.reason}, and it is also available in ${otherFinishes.join(', ')}.`
       };
     }
 
+    function productJson() {
+      const size = selectedSize();
+      const finish = selectedFinish();
+      const summary = summaryJson();
+
+      return {
+        description: {
+          preferred_json: summary,
+          summary: `${summary[1]} ${summary[2]} ${summary[3]}`,
+          aesthetic_style: 'Clean, contemporary lines with a restrained dining-room presence.',
+          texture: 'Smooth glass feel with a polished high-gloss impression.',
+          best_use: 'Made for everyday meals and flexible hosting in compact or family dining spaces.'
+        },
+        specifications: {
+          dimensions: size.sp === '4-to-6' ? '1.75 m L x 79.80 cm W x 75.20 cm H' : '2.15 m L x 79.80 cm W x 75.20 cm H',
+          primary_material: 'Glass',
+          secondary_material: 'Engineered Wood',
+          seating_capacity: size.label,
+          color_finish: finish.label,
+          net_quantity: '1 N',
+          assembly_required: 'Carpenter Assembly'
+        },
+        care_and_maintenance: {
+          instructions: [
+            'We recommend wiping the surface with a soft, dry cloth regularly.',
+            'We recommend using coasters or mats under hot or wet items.',
+            'We recommend cleaning spills promptly with a lightly damp cloth.'
+          ],
+          avoid: [
+            "It's best to avoid harsh chemical cleaners.",
+            "It's best to avoid dragging sharp or heavy objects across the surface."
+          ]
+        },
+        warranty: {
+          applicable: true,
+          duration_months: 12,
+          status_line: 'This product includes a **Yes** warranty for **12 months**.',
+          points: [
+            'Covers manufacturing defects under normal household use.',
+            'Covers defects in material and workmanship as per policy.',
+            'Excludes accidental damage, misuse, and normal wear.'
+          ],
+          link: 'https://example.com/warranty-policy-placeholder'
+        },
+        returns: {
+          window_days: 'within **10 days**',
+          condition: [
+            'Item must be unused and in original condition.',
+            'Original packaging and invoice must be retained.',
+            'Return approval is subject to category policy.'
+          ],
+          policy_link: 'https://example.com/returns-policy-placeholder'
+        },
+        quality_promise: {
+          statement: 'Every dining table product we offer is inspected for quality and built to stand up to everyday life.',
+          highlights: [
+            'Backed by our 12-month warranty for added peace of mind.',
+            'Comes with assembly support, so setup is simple.'
+          ],
+          isi: {
+            certified: false,
+            label: 'ISI Certified',
+            logo: 'static-asset-reference'
+          }
+        }
+      };
+    }
+
+    function renderList(title, values) {
+      return `<p><strong>${title}</strong></p><ul class="list-block">${values.map((value) => `<li>${value}</li>`).join('')}</ul>`;
+    }
+
+    function renderDescription(item) {
+      const json = item.description.preferred_json;
+      return `
+        <div class="copy-block">
+          <p><strong>1.</strong> ${json[1]}</p>
+          <p><strong>2.</strong> ${json[2]}</p>
+          <p><strong>3.</strong> ${json[3]}</p>
+        </div>
+      `;
+    }
+
+    function renderSpecs(item) {
+      return `<dl>${Object.entries(item.specifications).map(([key, value]) => `
+        <div><dt>${key.replace(/_/g, ' ')}</dt><dd>${value}</dd></div>
+      `).join('')}</dl>`;
+    }
+
+    function renderTabContent(item) {
+      const views = {
+        description: renderDescription(item),
+        specifications: renderSpecs(item),
+        care: `<div class="copy-block">${renderList('Instructions', item.care_and_maintenance.instructions)}${renderList('Avoid', item.care_and_maintenance.avoid)}</div>`,
+        warranty: `<div class="copy-block"><p>${item.warranty.status_line}</p>${renderList('Coverage', item.warranty.points)}</div>`,
+        returns: `<div class="copy-block"><p>Eligible ${item.returns.window_days}.</p>${renderList('Condition', item.returns.condition)}</div>`,
+        quality: `<div class="copy-block"><p>${item.quality_promise.statement}</p>${renderList('Highlights', item.quality_promise.highlights)}<p>${item.quality_promise.isi.label}: ${item.quality_promise.isi.certified ? 'Yes' : 'No'}</p></div>`
+      };
+      document.getElementById('tabPanel').innerHTML = views[state.tab] || views.description;
+    }
+
     function render() {
       const size = selectedSize();
       const finish = selectedFinish();
-      const json = summaryJson();
+      const item = productJson();
+      const json = item.description.preferred_json;
 
       document.documentElement.style.setProperty('--surface', finish.color);
       document.getElementById('title').textContent = `Caribu Glass ${size.label} Dining Table In ${finish.label} Finish`;
@@ -399,24 +536,22 @@
         <button class="thumb ${item.sv === state.sv ? 'active' : ''}" type="button" data-sv="${item.sv}" aria-label="${item.label}" style="background:${item.color}"></button>
       `).join('');
 
-      document.getElementById('specs').innerHTML = `
-        <div><dt>Primary Material Type</dt><dd>Glass</dd></div>
-        <div><dt>Warranty In Months</dt><dd>12</dd></div>
-        <div><dt>Net Quantity</dt><dd>1 N</dd></div>
-        <div><dt>Length</dt><dd>${size.sp === '4-to-6' ? '1.75 m' : '2.15 m'}</dd></div>
-        <div><dt>Width</dt><dd>79.80 cm</dd></div>
-        <div><dt>Height</dt><dd>75.20 cm</dd></div>
-      `;
+      document.querySelectorAll('[data-tab]').forEach((button) => {
+        button.classList.toggle('active', button.dataset.tab === state.tab);
+      });
 
+      renderTabContent(item);
       updateUrl();
     }
 
     document.addEventListener('click', (event) => {
       const sizeButton = event.target.closest('[data-sp]');
       const finishButton = event.target.closest('[data-sv]');
+      const tabButton = event.target.closest('[data-tab]');
       if (sizeButton) state.sp = sizeButton.dataset.sp;
       if (finishButton) state.sv = finishButton.dataset.sv;
-      if (sizeButton || finishButton) render();
+      if (tabButton) state.tab = tabButton.dataset.tab;
+      if (sizeButton || finishButton || tabButton) render();
     });
 
     render();
