@@ -44,67 +44,82 @@ asked to generate. No markdown fences, no commentary, no extra fields.
 {{SCHEMA_SUBSET}}
 
 RULES:
-1. description:
-   - summary: 3-4 sentences, warm and inviting.
-   - Priority order when source supports it:
-     1) Core function (e.g. extendable seating, capacity change)
-     2) Hosting / everyday use warmth (family dinners, gatherings)
-     3) Finish + easy care
-   - Numbers stay as digits (4 not four).
-   - Never invent facts. Reusing a short source phrase is fine when it
-     is the clearest way to state an important fact.
-   - Never mention price, tier, or premium/value labels.
-   - aesthetic_style, texture, best_use: one line each, grounded in
-     source facts, warm tone.
-2. specifications: NOT GENERATED. Will be copied from source exactly
-   (dimensions, primary_material, weight, assembly_required). Do NOT
-   generate or rewrite these fields—they are already provided.
-3. Never alter or contradict a factual value given in the source data
+1. Never alter or contradict a factual value given in the source data
    (dimensions, material, weight) — these belong in specifications only
-   and must never be rewritten in description.
-4. Every fact you mention from the source data must actually be present
+   and must never be rewritten there.
+2. Every fact you mention from the source data must actually be present
    in the source data — never invent details. Reusing a short phrase or
    sentence from the source is fine when it's the clearest way to state
    an important fact; the priority is that required facts are present
    and the format rules below are followed, not avoiding all repetition.
-5. NUMBERS STAY AS DIGITS. Any numeric spec you reference in prose
+3. NUMBERS STAY AS DIGITS. Any numeric spec you reference in prose
    (dimensions, thickness, seating capacity, counts, sizes, etc.) must
    be written the same way the source gives it — digits, not spelled-out
    words. Write "4 Inches" / "4-seater" / "78 x 60 in", never "four
    inches" / "four-seater". This applies everywhere in the description,
    not just in specifications.
-6. The price tier ({{TIER}}) must shape your WORD CHOICE only — {{TIER_VOICE}}.
+4. The price tier ({{TIER}}) must shape your WORD CHOICE only — {{TIER_VOICE}}.
    Never state the tier name, never mention price, never imply a numeric
    price range.
-7. care_and_maintenance: select and politely rephrase ONLY from the
+5. care_and_maintenance: select and politely rephrase ONLY from the
    provided reference list below. Do not invent instructions. Exactly 3
    instructions, exactly 2 avoid items, polite phrasing required
    ("We recommend...", "It's best to avoid...").
    Reference for "{{MATCHED_CATEGORY}}":
    Instructions: {{MATCHED_INSTRUCTIONS}}
    Avoid: {{MATCHED_AVOID}}
-8. warranty:
-   - status_line: exactly 1 sentence, formatted EXACTLY like this template —
-     both the Yes/No AND the duration must each be individually wrapped in
-     ** **, like this real example:
-     "**Yes**, this product includes a **12 months** warranty against manufacturing defects."
-     (or "**No**, this product does not carry a manufacturer warranty." when
-     not applicable). Do not drop the bold Yes/No — it is required in every
-     status_line, not optional.
-   - points: aim for 3 items when source facts allow:
-       • 2 lines describing what IS covered (includes)
-       • 1 line describing what is NOT covered (excludes)
-     If the source only has include facts → write 2 include points.
-     If the source only has exclude facts → write 2 exclude points.
-     If the source only has a duration and no coverage details → write
-     exactly 2 short points that restate duration coverage and that
-     standard terms apply (do not invent specific defects or exclusions).
-   - Never invent covered defects, parts, or exclusions not present in
-     the source data.
-   - Do not generate the link field.
-9. If a fact is genuinely missing and must be inferred, use plain,
+6. WARRANTY FORMAT — must match this EXACTLY or it fails validation.
+   status_line is one sentence containing BOTH of these bolded spans,
+   with nothing else inside either pair of asterisks:
+     - **Yes** or **No**
+     - **N months** — digits, a space, then the literal word "months"
+       (e.g. **12 months** — never **12-month**, never **twelve months**,
+       never wrap other words inside the same bold span).
+   Example: "**Yes**, this product is covered by a **12 months** warranty."
+   points: up to 4, only from real source-provided facts, never invented
+   to pad the count.
+7. If a fact is genuinely missing and must be inferred, use plain,
    non-committal language — never state an inferred detail with
    unwarranted confidence.
+8. NO REPETITION ACROSS DESCRIPTION FIELDS. summary, aesthetic_style,
+   texture, and best_use each cover a DIFFERENT angle — do not restate
+   the same fact, adjective, or phrase in more than one of them:
+     - summary: the overall pitch — what it is, its key facts, why it
+       matters. This is the only field that should mention specs like
+       seating capacity, material, or finish in sentence form.
+     - aesthetic_style: visual/style adjectives ONLY (e.g. "modern",
+       "minimalist") — no material, finish, or usage facts here.
+     - texture: tactile/sensory impression ONLY (how it feels to the
+       touch) — no style or usage facts here.
+     - best_use: where/how/who it's for ONLY — no material or style
+       facts here.
+   If you find yourself repeating a word like "sleek", "smooth", or the
+   finish/material name across two fields, rewrite one of them.
+9. VARIANT GROUNDING. If the source data specifies a particular variant
+   this product represents — e.g. a seating capacity ({{VARIANT_SEATING}})
+   or a color/finish ({{VARIANT_COLOR}}) — the description must reflect
+   THAT exact variant only. Never mention other sizes, seat counts, or
+   colors that are not this specific variant, EXCEPT where rule 10
+   explicitly allows naming sibling variants that were given to you.
+10. SUMMARY STRUCTURE — exactly 3 to 4 sentences, in this order. Never
+    include the raw L x W x H / m / cm dimension string anywhere in
+    summary — that lives only in specifications.
+      1. What the product is, plus its primary size/capacity fact
+         stated in digits and in the vocabulary appropriate to its
+         category (e.g. "King size", "3 to 4 Seater", "Queen size") —
+         use the primary size/seating variant field from PRODUCT INPUT.
+      2. Repeat that exact size/variant briefly, and — ONLY if PRODUCT
+         INPUT lists other sizes this product is "also available in" —
+         name those other sizes too. Never invent sizes that were not
+         explicitly listed as available.
+      3. State this exact color/finish and — ONLY if PRODUCT INPUT
+         lists other available colors — name those too, then add one
+         short clause on why THIS color/finish suits a particular room
+         or use case. This is a style opinion, not a factual claim —
+         keep it brief and plausible, never invent a technical property
+         to justify it.
+   None of these facts may be repeated in aesthetic_style, texture, or
+   best_use (see rule 8) — summary is the only field that states them.
 
 LEARNED PREFERENCES (feedback-derived rules):
 {{LEARNED_RULES}}`;
@@ -124,6 +139,9 @@ function buildPrompt(product, priceBands) {
   const tier = computeTier(product.price, product.category, priceBands);
   const careMatch = matchMaterial(product.primary_material);
 
+  const variantSeating = product.seating_capacity || '(not specified)';
+  const variantColor = product.color_finish || '(not specified)';
+
   const systemPrompt = SYSTEM_PROMPT_TEMPLATE
     .replace('{{SCHEMA_SUBSET}}', JSON.stringify(LLM_GENERATED_SCHEMA_SUBSET, null, 2))
     .replace('{{TIER}}', tier)
@@ -131,13 +149,28 @@ function buildPrompt(product, priceBands) {
     .replace('{{MATCHED_CATEGORY}}', careMatch.category)
     .replace('{{MATCHED_INSTRUCTIONS}}', JSON.stringify(careMatch.instructions))
     .replace('{{MATCHED_AVOID}}', JSON.stringify(careMatch.avoid))
+    .replace('{{VARIANT_SEATING}}', variantSeating)
+    .replace('{{VARIANT_COLOR}}', variantColor)
     .replace('{{LEARNED_RULES}}', formatLearnedRules(rules, product.category));
 
   // Note: raw price is included here only so the model has context for
-  // tone (rule 3 forbids it leaking into output — enforced in validator.js).
+  // tone (rule 4 forbids it leaking into output — enforced in validator.js).
+  const variantLines = [];
+  if (product.seating_capacity) variantLines.push(`Primary size/seating variant (THIS product): ${product.seating_capacity}`);
+  if (product.color_finish) variantLines.push(`Color / finish (THIS product): ${product.color_finish}`);
+  if (Array.isArray(product.available_sizes) && product.available_sizes.length) {
+    const others = product.available_sizes.filter((s) => s !== product.seating_capacity);
+    if (others.length) variantLines.push(`Also available in these sizes: ${others.join(', ')}`);
+  }
+  if (Array.isArray(product.available_colors) && product.available_colors.length) {
+    const others = product.available_colors.filter((c) => c !== product.color_finish);
+    if (others.length) variantLines.push(`Also available in these colors: ${others.join(', ')}`);
+  }
+
   const userPrompt = `PRODUCT INPUT:
 Name: ${product.name}
 Category: ${product.category}
+${variantLines.join('\n')}
 Raw source data: ${JSON.stringify(product, null, 2)}
 
 Generate the requested fields now.`;

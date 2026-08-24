@@ -2,7 +2,7 @@
 
 const FULL_SCHEMA_EXAMPLE = {
   description: {
-    summary: "2-3 sentences, paraphrased from specs (never copied verbatim), persuasive",
+    summary: "3-4 sentences: product overview, selected size + sibling sizes, selected color/finish + sibling colors, no raw dimensions",
     aesthetic_style: "1 line, tier-appropriate persuasive language",
     texture: "1 line, sensory",
     best_use: "1 line, where it fits + why, combined"
@@ -44,7 +44,7 @@ const FULL_SCHEMA_EXAMPLE = {
 // (specifications, returns, and most of quality_promise are never LLM output.)
 const LLM_GENERATED_SCHEMA_SUBSET = {
   description: {
-    summary: "2-3 sentences, paraphrased, persuasive",
+    summary: "3-4 sentences: overview, selected size + available sizes, selected color/finish + available colors",
     aesthetic_style: "1 line",
     texture: "1 line, sensory",
     best_use: "1 line"

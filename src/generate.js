@@ -26,7 +26,7 @@ async function generateOne(product, priceBands, attempt = 1) {
   // specifications: passed through unchanged, never generated. Missing
   // values are left out rather than invented.
   const specifications = {};
-  for (const field of ['dimensions', 'primary_material', 'weight', 'assembly_required']) {
+  for (const field of ['dimensions', 'primary_material', 'weight', 'assembly_required', 'seating_capacity', 'color_finish']) {
     if (product[field] !== undefined && product[field] !== null && product[field] !== '') {
       specifications[field] = product[field];
     }

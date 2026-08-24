@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Variant Summary Demo</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #24211e;
+      --muted: #6f6860;
+      --line: #ddd8d0;
+      --brand: #8f4d2f;
+      --soft: #f8f6f2;
+      --green: #1f6f5b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #fff;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--brand);
+    }
+
+    .search {
+      width: min(420px, 50vw);
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      color: var(--muted);
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(360px, 1fr) minmax(340px, 440px);
+      gap: 42px;
+      padding: 28px 32px 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 16px;
+    }
+
+    .thumbs {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .thumb, .hero {
+      border: 1px solid var(--line);
+      background: var(--soft);
+      overflow: hidden;
+    }
+
+    .thumb {
+      aspect-ratio: 1;
+    }
+
+    .hero {
+      aspect-ratio: 4 / 3;
+      display: grid;
+      place-items: center;
+    }
+
+    .table-art {
+      width: 76%;
+      height: 58%;
+      position: relative;
+    }
+
+    .top {
+      position: absolute;
+      left: 6%;
+      right: 6%;
+      top: 18%;
+      height: 38%;
+      background: var(--surface);
+      border: 2px solid rgba(0, 0, 0, .12);
+      box-shadow: 0 18px 24px rgba(0, 0, 0, .08);
+    }
+
+    .leg {
+      position: absolute;
+      width: 10%;
+      height: 42%;
+      top: 50%;
+      background: #434343;
+    }
+
+    .leg.left { left: 22%; }
+    .leg.right { right: 22%; }
+
+    .meta {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    h1 {
+      font-size: 24px;
+      line-height: 1.25;
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .byline {
+      color: var(--muted);
+      margin-top: -8px;
+    }
+
+    .label {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .swatches, .sizes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .swatch {
+      width: 88px;
+      min-height: 70px;
+      display: grid;
+      grid-template-rows: 34px 1fr;
+      padding: 0;
+      text-align: left;
+    }
+
+    .swatch span {
+      font-size: 11px;
+      line-height: 1.2;
+      padding: 5px;
+      color: var(--ink);
+    }
+
+    .size {
+      min-width: 128px;
+      min-height: 42px;
+      padding: 10px 14px;
+      color: var(--ink);
+    }
+
+    button.active {
+      outline: 2px solid var(--green);
+      border-color: var(--green);
+    }
+
+    .price {
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .deal {
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .mrp {
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+
+    .summary {
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+      line-height: 1.6;
+      color: #3c3833;
+    }
+
+    .tabs {
+      grid-column: 1 / -1;
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .tabbar {
+      display: flex;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .tabbar button {
+      border: 0;
+      border-bottom: 3px solid transparent;
+      padding: 12px 16px;
+    }
+
+    .tabbar button.active {
+      outline: 0;
+      border-bottom-color: var(--brand);
+      color: var(--brand);
+    }
+
+    dl {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(160px, 1fr));
+      gap: 14px 24px;
+      margin: 0;
+    }
+
+    dt {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    dd {
+      margin: 4px 0 0;
+      font-weight: 700;
+    }
+
+    @media (max-width: 820px) {
+      header {
+        padding: 12px 16px;
+      }
+
+      .search {
+        display: none;
+      }
+
+      main {
+        grid-template-columns: 1fr;
+        padding: 18px 16px 36px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .thumbs {
+        grid-template-columns: repeat(4, 1fr);
+        order: 2;
+      }
+
+      dl {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">Urban Ladder</div>
+    <div class="search">Search</div>
+  </header>
+
+  <main>
+    <section class="gallery" aria-label="Product gallery">
+      <div class="thumbs" id="thumbs"></div>
+      <div class="hero" id="hero">
+        <div class="table-art" aria-hidden="true">
+          <div class="top"></div>
+          <div class="leg left"></div>
+          <div class="leg right"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="meta">
+      <h1 id="title"></h1>
+      <div class="byline">By Urban Ladder</div>
+
+      <div>
+        <div class="label">Finish</div>
+        <div class="swatches" id="finishOptions"></div>
+      </div>
+
+      <div>
+        <div class="label">Seating Capacity</div>
+        <div class="sizes" id="sizeOptions"></div>
+      </div>
+
+      <div class="price">
+        <div>Today's Deal Price</div>
+        <div class="deal" id="price"></div>
+        <div><span class="mrp" id="mrp"></span> <span id="discount"></span></div>
+      </div>
+
+      <div class="summary" id="summary"></div>
+    </section>
+
+    <section class="tabs">
+      <div class="tabbar">
+        <button class="active" type="button">Description</button>
+        <button type="button">Specifications</button>
+        <button type="button">Care & Maintenance</button>
+        <button type="button">Warranty</button>
+        <button type="button">Returns</button>
+        <button type="button">Quality Promise</button>
+      </div>
+      <dl id="specs"></dl>
+    </section>
+  </main>
+
+  <script>
+    const sizes = [
+      { sp: '4-to-6', label: '4 to 6 Extendable', price: '₹39,999', mrp: '₹57,799', discount: '(31% OFF)' },
+      { sp: '6-to-8', label: '6 to 8 Extendable', price: '₹49,999', mrp: '₹69,999', discount: '(29% OFF)' }
+    ];
+
+    const finishes = [
+      { sv: 'black-marble-high-gloss', label: 'Black Marble High Gloss', color: '#1e1d1b', reason: 'adds contrast to bright dining rooms' },
+      { sv: 'white-ceramic', label: 'White Ceramic', color: '#f2f0e9', reason: 'keeps compact dining corners feeling open' },
+      { sv: 'white-high-gloss', label: 'White High Gloss', color: '#fffaf1', reason: 'suits clean, modern meal spaces' },
+      { sv: 'white-marble-high-gloss', label: 'White Marble High Gloss', color: '#ece7de', reason: 'brings a refined look to family dining' }
+    ];
+
+    const state = {
+      sp: new URLSearchParams(location.search).get('sp') || '4-to-6',
+      sv: new URLSearchParams(location.search).get('sv') || 'white-high-gloss'
+    };
+
+    function selectedSize() {
+      return sizes.find((item) => item.sp === state.sp) || sizes[0];
+    }
+
+    function selectedFinish() {
+      return finishes.find((item) => item.sv === state.sv) || finishes[2];
+    }
+
+    function updateUrl() {
+      const params = new URLSearchParams({ sp: state.sp, sv: state.sv });
+      history.replaceState(null, '', `${location.pathname}?${params.toString()}`);
+    }
+
+    function summaryJson() {
+      const size = selectedSize();
+      const finish = selectedFinish();
+      const otherSizes = sizes.filter((item) => item.sp !== size.sp).map((item) => item.label);
+      const otherFinishes = finishes.filter((item) => item.sv !== finish.sv).map((item) => item.label);
+
+      return {
+        1: 'The Caribu dining table blends everyday utility with a polished extendable design for flexible hosting. Its clean profile and smooth surface bring the aesthetic, texture, and best-use context into one compact product summary.',
+        2: `This is the ${size.label} size and is also available in ${otherSizes.join(', ')}.`,
+        3: `This is the ${finish.label} finish, which ${finish.reason}, and it is also available in ${otherFinishes.join(', ')}.`
+      };
+    }
+
+    function render() {
+      const size = selectedSize();
+      const finish = selectedFinish();
+      const json = summaryJson();
+
+      document.documentElement.style.setProperty('--surface', finish.color);
+      document.getElementById('title').textContent = `Caribu Glass ${size.label} Dining Table In ${finish.label} Finish`;
+      document.getElementById('price').textContent = size.price;
+      document.getElementById('mrp').textContent = `MRP ${size.mrp}`;
+      document.getElementById('discount').textContent = size.discount;
+      document.getElementById('summary').innerHTML = `${json[1]}<br>${json[2]}<br>${json[3]}`;
+
+      document.getElementById('finishOptions').innerHTML = finishes.map((item) => `
+        <button class="swatch ${item.sv === state.sv ? 'active' : ''}" type="button" data-sv="${item.sv}" aria-label="${item.label}">
+          <div style="background:${item.color}"></div>
+          <span>${item.label}</span>
+        </button>
+      `).join('');
+
+      document.getElementById('sizeOptions').innerHTML = sizes.map((item) => `
+        <button class="size ${item.sp === state.sp ? 'active' : ''}" type="button" data-sp="${item.sp}">${item.label}</button>
+      `).join('');
+
+      document.getElementById('thumbs').innerHTML = finishes.map((item) => `
+        <button class="thumb ${item.sv === state.sv ? 'active' : ''}" type="button" data-sv="${item.sv}" aria-label="${item.label}" style="background:${item.color}"></button>
+      `).join('');
+
+      document.getElementById('specs').innerHTML = `
+        <div><dt>Primary Material Type</dt><dd>Glass</dd></div>
+        <div><dt>Warranty In Months</dt><dd>12</dd></div>
+        <div><dt>Net Quantity</dt><dd>1 N</dd></div>
+        <div><dt>Length</dt><dd>${size.sp === '4-to-6' ? '1.75 m' : '2.15 m'}</dd></div>
+        <div><dt>Width</dt><dd>79.80 cm</dd></div>
+        <div><dt>Height</dt><dd>75.20 cm</dd></div>
+      `;
+
+      updateUrl();
+    }
+
+    document.addEventListener('click', (event) => {
+      const sizeButton = event.target.closest('[data-sp]');
+      const finishButton = event.target.closest('[data-sv]');
+      if (sizeButton) state.sp = sizeButton.dataset.sp;
+      if (finishButton) state.sv = finishButton.dataset.sv;
+      if (sizeButton || finishButton) render();
+    });
+
+    render();
+  </script>
+</body>
+</html>

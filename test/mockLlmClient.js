@@ -7,9 +7,18 @@ function extractField(text, label) {
   return match ? match[1].trim() : null;
 }
 
+function extractListLine(text, label) {
+  const value = extractField(text, label);
+  return value ? value.split(',').map((item) => item.trim()).filter(Boolean) : [];
+}
+
 function mockGenerateContent({ systemPrompt, userPrompt }) {
   const name = extractField(userPrompt, 'Name') || 'This product';
   const category = extractField(userPrompt, 'Category') || 'Home Goods';
+  const selectedSize = extractField(userPrompt, 'Primary size/seating variant \\(THIS product\\)') || 'selected size';
+  const selectedColor = extractField(userPrompt, 'Color / finish \\(THIS product\\)') || 'selected finish';
+  const otherSizes = extractListLine(userPrompt, 'Also available in these sizes');
+  const otherColors = extractListLine(userPrompt, 'Also available in these colors');
 
   const instructionsMatch = systemPrompt.match(/Instructions:\s*(\[.*?\])/s);
   const avoidMatch = systemPrompt.match(/Avoid:\s*(\[.*?\])/s);
@@ -45,7 +54,7 @@ function mockGenerateContent({ systemPrompt, userPrompt }) {
 
   return Promise.resolve({
     description: {
-      summary: `${name} brings a considered addition to any ${category.toLowerCase()} space, combining everyday usability with thoughtful design.`,
+      summary: `${name} brings a considered addition to any ${category.toLowerCase()} space, combining everyday usability with thoughtful design. This is the ${selectedSize} variant${otherSizes.length ? ` and is also available in ${otherSizes.join(', ')}` : ''}. This ${selectedColor} finish suits calm, lived-in rooms${otherColors.length ? ` and is also available in ${otherColors.join(', ')}` : ''}.`,
       aesthetic_style: 'Clean lines with a calm, understated presence.',
       texture: 'Smooth to the touch with a natural, tactile finish.',
       best_use: `Well suited to everyday ${category.toLowerCase()} use, where both form and function matter.`
