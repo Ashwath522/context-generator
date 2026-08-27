@@ -7,10 +7,22 @@ require("dotenv").config();
 const { LLM_GENERATED_SCHEMA_SUBSET } = require('./schema');
 const { LLM_RESPONSE_SCHEMA } = require('./schema');
 
+if (process.env.MODE === 'production') {
+  if (!process.env.LLM_API_KEY) {
+    throw new Error('Startup Error: LLM_API_KEY is not set. Add it to .env or environment.');
+  }
+  if (!process.env.LLM_MODEL) {
+    throw new Error('Startup Error: LLM_MODEL is not set. Expected a valid Gemini model.');
+  }
+  if (process.env.LLM_MODEL.includes('gemini-2.0-flash')) {
+    throw new Error('Startup Error: LLM_MODEL points to a retired model (gemini-2.0-flash). Please update to a newer model like gemini-3.1-flash-lite.');
+  }
+}
+
 async function callGemini({ systemPrompt, userPrompt, jsonMode, responseSchema }) {
   const apiKey = process.env.LLM_API_KEY;
   const baseUrl = process.env.LLM_BASE_URL || 'https://generativelanguage.googleapis.com/v1beta';
-  const model = process.env.LLM_MODEL || 'gemini-2.0-flash';
+  const model = process.env.LLM_MODEL || '3.1-flash-lite';
 
   if (!apiKey) {
     throw new Error(

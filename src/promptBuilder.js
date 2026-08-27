@@ -9,6 +9,9 @@ function loadRules() {
   try {
     return JSON.parse(fs.readFileSync(RULES_PATH, 'utf-8'));
   } catch (e) {
+    if (e.code !== 'ENOENT') {
+      console.error(`Error parsing JSON in ${RULES_PATH}: ${e.message}`);
+    }
     return {};
   }
 }
@@ -105,50 +108,62 @@ RULES:
    THAT exact variant only. Never mention other sizes, seat counts, or
    colors that are not this specific variant, EXCEPT where rule 10
    explicitly allows naming sibling variants that were given to you.
-10. SUMMARY STRUCTURE — exactly 4 sentences, in this order. Aim for
-    90 to 125 words total, so the summary feels substantial and never thin.
-    Each sentence should earn its place by adding a clear shopper benefit.
-    Never
-    include the raw L x W x H / m / cm dimension string anywhere in
-    summary — that lives only in specifications.
-      1. A richer product overview: what the product is, its main design
-         appeal, and its aesthetic character. Include its primary
-         size/capacity fact
-         stated in digits and in the vocabulary appropriate to its
-         category (e.g. "King size", "3 to 4 Seater", "Queen size") —
-         use the primary size/seating variant field from PRODUCT INPUT.
-         This sentence may be longer than the others, but keep it natural.
-      2. Describe the texture/tactile feel and comfort or usability
-         impression, grounded only in product facts or cautious sensory
-         language. This is where "what texture it has" must appear.
-      3. Repeat that exact size/variant briefly, explain the practical
-         benefit of this selected size/capacity, and — ONLY if PRODUCT
-         INPUT lists other sizes this product is "also available in" —
-         name those other sizes too. Never invent sizes that were not
-         explicitly listed as available.
-      4. State this exact color/finish and — ONLY if PRODUCT INPUT
-         lists other available colors — name those too, then add one
-         persuasive clause on why THIS color/finish suits a particular
-         room or use case, and why the shopper should feel confident
-         buying it. This is a style opinion, not a factual claim — keep
-         it plausible, never invent a technical property to justify it.
+10. SUMMARY STRUCTURE — one idea per sentence, in this exact order, and
+    NEVER include the raw L x W x H / m / cm dimension string anywhere
+    in summary — that lives only in specifications. The sentence count
+    is NOT fixed — it depends on which variant facts this product
+    actually has:
+      Sentence 1 — OVERVIEW (always present): what the product is, its
+        main functional or aesthetic promise, and one concrete usage
+        benefit. Do not mention size or color here.
+      Sentence 2 — FEEL (always present): the tactile/texture impression
+        of the primary material paired with one style/finish-level
+        visual impression, ending in a short emotional or functional
+        payoff. Do not mention size or color by name here — texture and
+        style words only.
+      Sentence 3 — SIZE (ONLY if a size/seating/capacity variant field
+        is given in PRODUCT INPUT — omit this sentence entirely if none
+        was given, do not invent a substitute or talk about dimensions
+        instead):
+        "This is the {size} size, {one short shopper-benefit clause tied
+        to this specific size}, and it is also available in {sibling
+        sizes, comma-separated}."
+        Drop the "and it is also available in..." clause if no sibling
+        sizes were listed.
+      Sentence 4 — FINISH (ONLY if a color/finish variant field is given
+        — omit entirely if none was given, do not invent a substitute):
+        "This is the {color/finish} finish, which {reason}, and it is
+        also available in {sibling colors, comma-separated}, making it
+        a confident choice for {one short closing benefit}."
+        For {reason}: if PRODUCT INPUT supplies an explicit reason for
+        this color/finish, use that reason (lightly reworded is fine,
+        inventing a different one is not). If no reason was supplied,
+        compose a brief, plausible one grounded only in the finish name
+        itself — never invent a technical property to justify it.
+        Drop the "and it is also available in..." clause if no sibling
+        colors were listed.
+    A product with both a size and a color variant produces 4 sentences
+    total. A product with only one of the two produces 3. A product with
+    neither produces 2. Never pad with an extra sentence to hit a target
+    count, and never fold two of these ideas into one sentence.
+
+    EXAMPLE (for calibration only — do not reuse this wording for other
+    products):
+    "The Caribu dining table brings a clean, polished aesthetic to the
+    dining area, with an extendable design that makes the room feel
+    ready for both everyday meals and planned hosting. Its glass surface
+    gives a smooth tactile feel, while the refined high-gloss impression
+    helps the table look composed without making the space feel heavy.
+    This is the 6 to 8 Extendable size, giving shoppers a flexible fit
+    for daily use and guest seating, and it is also available in 4 to 6
+    Extendable. This is the White Ceramic finish, which keeps compact
+    dining corners feeling open, and it is also available in Black
+    Marble High Gloss, White High Gloss, White Marble High Gloss, making
+    it a confident choice for a home that needs style and practical
+    adaptability."
+
    None of these facts may be repeated in aesthetic_style, texture, or
    best_use (see rule 8) — summary is the only field that states them.
-11. PREFERRED SUMMARY JSON MEANING. The summary string must read like
-    these 3 numbered JSON values joined as sentences, while the final
-    output still preserves every existing top-level JSON field in the
-    schema:
-      "1": product overview, 3-4 lines worth of content, including the
-           aesthetic and a gentle reason to buy.
-      "2": texture/tactile feel and comfort or usability impression.
-      "3": selected size/capacity, why that size is useful, plus any
-           explicitly provided sibling sizes/capacities.
-      "4": selected color/finish, why this exact color/finish suits the
-           room/use case in a shopper-friendly way, plus any explicitly
-           provided sibling colors.
-    Do not remove care, warranty, returns, quality_promise, or
-    specifications. Only description.summary changes per variant; the
-    non-variant factual blocks remain preserved from source/lookup rules.
 
 LEARNED PREFERENCES (feedback-derived rules):
 {{LEARNED_RULES}}`;
@@ -187,6 +202,7 @@ function buildPrompt(product, priceBands) {
   const variantLines = [];
   if (product.seating_capacity) variantLines.push(`Primary size/seating variant (THIS product): ${product.seating_capacity}`);
   if (product.color_finish) variantLines.push(`Color / finish (THIS product): ${product.color_finish}`);
+  if (product.color_reason) variantLines.push(`Reason this color/finish suits a shopper (use this, don't invent a different one): ${product.color_reason}`);
   if (Array.isArray(product.available_sizes) && product.available_sizes.length) {
     const others = product.available_sizes.filter((s) => s !== product.seating_capacity);
     if (others.length) variantLines.push(`Also available in these sizes: ${others.join(', ')}`);

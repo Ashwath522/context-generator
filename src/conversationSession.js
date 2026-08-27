@@ -8,6 +8,9 @@ function loadJson(filePath, fallback) {
   try {
     return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
   } catch (e) {
+    if (e.code !== 'ENOENT') {
+      console.error(`Error parsing JSON in ${filePath}: ${e.message}`);
+    }
     return fallback;
   }
 }

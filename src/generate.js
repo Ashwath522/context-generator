@@ -15,6 +15,9 @@ function loadPriceBands() {
   try {
     return JSON.parse(fs.readFileSync(PRICE_BANDS_PATH, 'utf-8'));
   } catch (e) {
+    if (e.code !== 'ENOENT') {
+      console.error(`Error parsing JSON in ${PRICE_BANDS_PATH}: ${e.message}`);
+    }
     return { Default: { good_max: 5000, mid_max: 20000 } };
   }
 }
@@ -108,7 +111,8 @@ async function generateBatch(products) {
     } catch (err) {
       results.push({ id: product.id, status: 'error', error: err.message });
     }
-    await new Promise(r => setTimeout(r, 15000));
+    const delayMs = parseInt(process.env.GENERATE_DELAY_MS, 10) || 15000;
+    await new Promise(r => setTimeout(r, delayMs));
   }
 
   return results;
@@ -122,7 +126,13 @@ module.exports = { generateOne, generateBatch, loadPriceBands, regenerateInConve
 
 if (require.main === module) {
   const productsPath = path.join(__dirname, '..', 'data', 'products.json');
-  const products = JSON.parse(fs.readFileSync(productsPath, 'utf-8'));
+  let products = [];
+  try {
+    products = JSON.parse(fs.readFileSync(productsPath, 'utf-8'));
+  } catch (e) {
+    console.error(`Error parsing JSON in ${productsPath}: ${e.message}`);
+    process.exit(1);
+  }
 
   generateBatch(products)
     .then((results) => {

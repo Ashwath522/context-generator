@@ -35,7 +35,13 @@ async function runTest() {
   console.log('3. Session adjustments:');
   console.log(JSON.stringify(adjustments, null, 2));
 
-  const products = JSON.parse(fs.readFileSync(PRODUCTS_PATH, 'utf-8'));
+  let products = [];
+  try {
+    products = JSON.parse(fs.readFileSync(PRODUCTS_PATH, 'utf-8'));
+  } catch (e) {
+    console.error(`Error parsing JSON in ${PRODUCTS_PATH}: ${e.message}`);
+    process.exit(1);
+  }
   const product = products[0];
   const priceBands = loadPriceBands();
   

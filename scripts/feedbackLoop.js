@@ -31,7 +31,13 @@ function printSummary(item) {
 
 async function main() {
   const productId = process.argv[2];
-  const products = JSON.parse(fs.readFileSync(PRODUCTS_PATH, 'utf-8'));
+  let products = [];
+  try {
+    products = JSON.parse(fs.readFileSync(PRODUCTS_PATH, 'utf-8'));
+  } catch (e) {
+    console.error(`Error parsing JSON in ${PRODUCTS_PATH}: ${e.message}`);
+    process.exit(1);
+  }
   const product = productId ? products.find((p) => p.id === productId) : products[0];
 
   if (!product) {
@@ -94,7 +100,13 @@ async function main() {
   console.log('=== Session ended ===');
   console.log(`rules.json unchanged: ${rulesBefore === rulesAfter ? 'YES (correct)' : 'NO — LEAK DETECTED, investigate immediately'}`);
 
-  const conversations = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'conversations.json'), 'utf-8'));
+  let conversations = {};
+  const convPath = path.join(__dirname, '..', 'data', 'conversations.json');
+  try {
+    conversations = JSON.parse(fs.readFileSync(convPath, 'utf-8'));
+  } catch (e) {
+    console.error(`Error parsing JSON in ${convPath}: ${e.message}`);
+  }
   console.log(`Turns logged in this conversation: ${conversations[convId].turns.length}`);
   console.log('Final item:');
   console.log(JSON.stringify(item, null, 2));
