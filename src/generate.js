@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { generateContent } = require('./llmClient');
 const { buildPrompt } = require('./promptBuilder');
-const { applySessionAdjustments } = require('./conversationSession');
+const { applySessionAdjustments, getSessionAdjustments } = require('./conversationSession');
 const { getReturnsBlock } = require('./returnsLookup');
 const { buildQualityPromise } = require('./qualityComposer');
 const { validateItem } = require('./validator');
@@ -65,9 +65,21 @@ async function generateOne(product, priceBands, attempt = 1, conv_id = null) {
     }
   };
 
-  const result = validateItem(item, product);
+  let relaxLengthCheck = false;
+  if (conv_id) {
+    const turns = getSessionAdjustments(conv_id);
+    if (turns.length > 0) {
+      const latestTurn = turns[turns.length - 1];
+      if (/\b(short|long|brief|concis|length|detail)\b/i.test(latestTurn.msg)) {
+        relaxLengthCheck = true;
+      }
+    }
+  }
+
+  const result = validateItem(item, product, { relaxLengthCheck });
 
   if (!result.valid && attempt < 2) {
+    console.warn(`[retry] product ${product.id} failed validation, retrying (this doubles the API call for this turn): ${result.errors.join('; ')}`);
     return generateOne(product, priceBands, attempt + 1, conv_id);
   }
 

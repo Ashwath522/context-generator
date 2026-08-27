@@ -10,7 +10,7 @@ function includesNormalized(text, value) {
   return normalize(text).includes(normalize(value));
 }
 
-function validateItem(item, sourceProduct) {
+function validateItem(item, sourceProduct, options = {}) {
   const errors = [];
 
   const requiredTopLevel = ['description', 'specifications', 'care_and_maintenance', 'warranty', 'returns', 'quality_promise'];
@@ -24,16 +24,19 @@ function validateItem(item, sourceProduct) {
     for (const field of ['summary', 'aesthetic_style', 'texture', 'best_use']) {
       if (!item.description[field]) errors.push(`Missing description.${field}`);
     }
-    // Summary should be exactly 4 substantial sentences.
+    // Summary should be exactly 4 substantial sentences, unless relaxLengthCheck is true
     const summary = item.description.summary || '';
-    const sentenceCount = (summary.match(/[.!?]/g) || []).length;
-    if (sentenceCount !== 4) {
-      errors.push(`description.summary should be exactly 4 sentences; found ${sentenceCount}`);
+    if (!options.relaxLengthCheck) {
+      const sentenceCount = (summary.match(/[.!?]/g) || []).length;
+      if (sentenceCount !== 4) {
+        errors.push(`description.summary should be exactly 4 sentences; found ${sentenceCount}`);
+      }
+      const wordCount = summary.trim().split(/\s+/).filter(Boolean).length;
+      if (wordCount < 90) {
+        errors.push(`description.summary should be at least 90 words; found ${wordCount}`);
+      }
     }
-    const wordCount = summary.trim().split(/\s+/).filter(Boolean).length;
-    if (wordCount < 90) {
-      errors.push(`description.summary should be at least 90 words; found ${wordCount}`);
-    }
+    
     if (RAW_DIMENSION_RE.test(summary)) {
       errors.push('description.summary must not include raw dimension strings');
     }
