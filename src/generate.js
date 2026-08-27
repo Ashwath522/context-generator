@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { generateContent } = require('./llmClient');
 const { buildPrompt } = require('./promptBuilder');
+const { applySessionAdjustments } = require('./conversationSession');
 const { getReturnsBlock } = require('./returnsLookup');
 const { buildQualityPromise } = require('./qualityComposer');
 const { validateItem } = require('./validator');
@@ -18,10 +19,14 @@ function loadPriceBands() {
   }
 }
 
-async function generateOne(product, priceBands, attempt = 1) {
+async function generateOne(product, priceBands, attempt = 1, conv_id = null) {
   const { systemPrompt, userPrompt, careMatch } = buildPrompt(product, priceBands);
 
-  const llmOutput = await generateContent({ systemPrompt, userPrompt });
+  const finalUserPrompt = conv_id
+    ? applySessionAdjustments(conv_id, userPrompt)
+    : userPrompt;
+
+  const llmOutput = await generateContent({ systemPrompt, userPrompt: finalUserPrompt });
 
   // specifications: passed through unchanged, never generated. Missing
   // values are left out rather than invented.
@@ -63,7 +68,7 @@ async function generateOne(product, priceBands, attempt = 1) {
   const result = validateItem(item, product);
 
   if (!result.valid && attempt < 2) {
-    return generateOne(product, priceBands, attempt + 1);
+    return generateOne(product, priceBands, attempt + 1, conv_id);
   }
 
   if (!result.valid) {
@@ -97,7 +102,11 @@ async function generateBatch(products) {
   return results;
 }
 
-module.exports = { generateOne, generateBatch, loadPriceBands };
+function regenerateInConversation({ conv_id, product, priceBands }) {
+  return generateOne(product, priceBands, 1, conv_id);
+}
+
+module.exports = { generateOne, generateBatch, loadPriceBands, regenerateInConversation };
 
 if (require.main === module) {
   const productsPath = path.join(__dirname, '..', 'data', 'products.json');
