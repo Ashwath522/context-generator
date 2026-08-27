@@ -1,3 +1,7 @@
+/**
+ * Single Responsibility: Deterministic lookup for product returns policies based on category.
+ * Expected to be called from: src/generate.js
+ */
 const fs = require('fs');
 const path = require('path');
 

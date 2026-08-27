@@ -1,3 +1,7 @@
+/**
+ * Single Responsibility: Matches a raw material string to the appropriate care instructions.
+ * Expected to be called from: src/promptBuilder.js
+ */
 const fs = require('fs');
 const path = require('path');
 

@@ -1,3 +1,7 @@
+/**
+ * Single Responsibility: Calculates cosine similarity between text strings based on token counts.
+ * Expected to be called from: scripts/generateFromPaste.js
+ */
 function tokenize(text) {
   return String(text || '')
     .toLowerCase()

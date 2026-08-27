@@ -1,3 +1,7 @@
+/**
+ * Single Responsibility: Orchestrates the generation of the final product content, assembling specs, generated prose, and deterministic rules.
+ * Expected to be called from: CLI scripts (e.g. scripts/feedbackLoop.js, scripts/generateFromPaste.js, test/runTest.js).
+ */
 const fs = require('fs');
 const path = require('path');
 const { generateContent } = require('./llmClient');

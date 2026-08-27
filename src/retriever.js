@@ -7,6 +7,11 @@ const fs = require('fs');
 
 const ENTRY_THRESHOLD = 30;
 
+/**
+ * Single Responsibility: Experimental retrieval utility (e.g., mock vector search).
+ * Expected to be called from: Currently unused directly in the main generation pipeline.
+ */
+
 function getReference(filePath) {
   try {
     const raw = fs.readFileSync(filePath, 'utf-8');

@@ -1,3 +1,7 @@
+/**
+ * Single Responsibility: Single entry point for all LLM calls (Gemini API or Mock), enforcing generation configs.
+ * Expected to be called from: src/generate.js, src/feedback.js, src/conversationSession.js
+ */
 require("dotenv").config();
 // Single entrypoint for all LLM calls. Everything downstream (generate.js,
 // promptBuilder.js, feedback.js) calls generateContent()/generateText() and

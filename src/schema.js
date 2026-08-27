@@ -1,3 +1,7 @@
+/**
+ * Single Responsibility: Defines the JSON schema for LLM-generated content.
+ * Expected to be called from: src/llmClient.js, src/promptBuilder.js
+ */
 // Locked output schema. Do not deviate — see README for field-by-field rules.
 
 const FULL_SCHEMA_EXAMPLE = {

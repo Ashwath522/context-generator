@@ -1,3 +1,7 @@
+/**
+ * Single Responsibility: Rigorously validates the generated product item against constraints, formatting rules, and tier leakage.
+ * Expected to be called from: src/generate.js
+ */
 const FORBIDDEN_TIER_WORDS = ['premium', 'mid-premium', 'value tier'];
 const BARE_IMPERATIVE_RE = /^(wipe|do not|don't|clean|dry|avoid|use|apply|dust|store|keep|remove|scrub)\b/i;
 const RAW_DIMENSION_RE = /\b\d+(?:\.\d+)?\s*(?:m|cm|mm|in|inch|inches|ft|feet)\b\s*(?:[lwhd]\b)?(?:\s*x\s*\d+(?:\.\d+)?\s*(?:m|cm|mm|in|inch|inches|ft|feet)\b\s*(?:[lwhd]\b)?)+/i;

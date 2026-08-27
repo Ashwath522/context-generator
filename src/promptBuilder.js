@@ -1,3 +1,7 @@
+/**
+ * Single Responsibility: Constructs the detailed prompt for the LLM based on product data, price bands, and learned rules.
+ * Expected to be called from: src/generate.js
+ */
 const fs = require('fs');
 const path = require('path');
 const { matchMaterial } = require('./careMatcher');

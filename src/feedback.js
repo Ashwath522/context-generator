@@ -1,3 +1,7 @@
+/**
+ * Single Responsibility: Manages permanent, cross-product learned rules based on user feedback.
+ * Expected to be called from: external feedback ingestion tools (not directly from generate/promptBuilder loops).
+ */
 // Feedback loop = prompt-injection of accumulated rules, NOT fine-tuning.
 // The model never changes; what changes is what gets prepended to the
 // system prompt (via promptBuilder.js -> rules.json) on every future call.

@@ -1,3 +1,7 @@
+/**
+ * Single Responsibility: Manages ephemeral, single-conversation-only feedback adjustments that apply to one generation attempt.
+ * Expected to be called from: src/generate.js, scripts/feedbackLoop.js
+ */
 const fs = require('fs');
 const path = require('path');
 const { generateText } = require('./llmClient');
