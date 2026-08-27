@@ -94,6 +94,10 @@ async function generateContent({ systemPrompt, userPrompt }) {
     const { mockGenerateContent } = require('../test/mockLlmClient');
     return mockGenerateContent({ systemPrompt, userPrompt });
   }
+  if (process.env.DEBUG_PROMPT === '1') {
+    console.log("================ SYSTEM PROMPT ================\n" + systemPrompt);
+    console.log("================ USER PROMPT ================\n" + userPrompt);
+  }
   return callGemini({
     systemPrompt,
     userPrompt,

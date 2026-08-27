@@ -182,7 +182,7 @@ function formatLearnedRules(rules, category) {
     .join('\n');
 }
 
-function buildPrompt(product, priceBands) {
+function buildPrompt(product, priceBands, lengthDirection = null) {
   const rules = loadRules();
   const tier = computeTier(product.price, product.category, priceBands);
   const careMatch = matchMaterial(product.primary_material);
@@ -190,8 +190,15 @@ function buildPrompt(product, priceBands) {
   const variantSeating = product.seating_capacity || '(not specified)';
   const variantColor = product.color_finish || '(not specified)';
 
-  const systemPrompt = SYSTEM_PROMPT_TEMPLATE
-    .replace('{{SCHEMA_SUBSET}}', JSON.stringify(LLM_GENERATED_SCHEMA_SUBSET, null, 2))
+  let schemaSubset = JSON.parse(JSON.stringify(LLM_GENERATED_SCHEMA_SUBSET));
+  if (lengthDirection) {
+    const words = lengthDirection === 'shorter' ? '40-60' : '150-180';
+    const sentences = lengthDirection === 'shorter' ? '2' : '6-8';
+    schemaSubset.description.summary = `CRITICAL OVERRIDE: Exactly ${sentences} sentences, ${words} words. The user requested this length.`;
+  }
+
+  let systemPrompt = SYSTEM_PROMPT_TEMPLATE
+    .replace('{{SCHEMA_SUBSET}}', JSON.stringify(schemaSubset, null, 2))
     .replace('{{TIER}}', tier)
     .replace('{{TIER_VOICE}}', TIER_VOICE[tier])
     .replace('{{MATCHED_CATEGORY}}', careMatch.category)
@@ -200,6 +207,24 @@ function buildPrompt(product, priceBands) {
     .replace('{{VARIANT_SEATING}}', variantSeating)
     .replace('{{VARIANT_COLOR}}', variantColor)
     .replace('{{LEARNED_RULES}}', formatLearnedRules(rules, product.category));
+
+  if (lengthDirection) {
+    const words = lengthDirection === 'shorter' ? '40-60' : '150-180';
+    const sentences = lengthDirection === 'shorter' ? '2' : '6-8';
+    
+    const parts = systemPrompt.split('10. SUMMARY STRUCTURE');
+    if (parts.length === 2) {
+      const subParts = parts[1].split('LEARNED PREFERENCES');
+      if (subParts.length === 2) {
+        const replacement = `10. SUMMARY STRUCTURE - CRITICAL LENGTH OVERRIDE:
+    You MUST write EXACTLY ${sentences} sentences and target ${words} words for the \`description.summary\`.
+    The user explicitly demanded a ${lengthDirection.toUpperCase()} summary.
+    If you output the standard 4 sentences, you will fail the user's explicit command.
+    How to do this: Combine or expand the overview, texture, size, and finish details so that they fit perfectly into EXACTLY ${sentences} sentences. Do not omit the size or finish, just weave them together.\n\n`;
+        systemPrompt = parts[0] + replacement + 'LEARNED PREFERENCES' + subParts[1];
+      }
+    }
+  }
 
   // Note: raw price is included here only so the model has context for
   // tone (rule 4 forbids it leaking into output — enforced in validator.js).
@@ -216,13 +241,26 @@ function buildPrompt(product, priceBands) {
     if (others.length) variantLines.push(`Also available in these colors: ${others.join(', ')}`);
   }
 
-  const userPrompt = `PRODUCT INPUT:
+  let userPrompt = `PRODUCT INPUT:
 Name: ${product.name}
 Category: ${product.category}
 ${variantLines.join('\n')}
 Raw source data: ${JSON.stringify(product, null, 2)}
 
 Generate the requested fields now.`;
+
+  if (lengthDirection) {
+    const words = lengthDirection === 'shorter' ? '40-60' : '150-180';
+    const sentences = lengthDirection === 'shorter' ? '2' : '6-8';
+    userPrompt += `\n\n=========================================
+!!! CRITICAL OVERRIDE FOR THIS TURN !!!
+=========================================
+IGNORE ALL previous rules about summary length. 
+The user explicitly demanded a ${lengthDirection.toUpperCase()} summary.
+You MUST write EXACTLY ${sentences} sentences and target ${words} words for the \`description.summary\`.
+If you output the standard 4 sentences, you will fail the user's explicit command.
+Condense or expand your writing to hit exactly ${sentences} sentences.`;
+  }
 
   return { systemPrompt, userPrompt, tier, careMatch };
 }

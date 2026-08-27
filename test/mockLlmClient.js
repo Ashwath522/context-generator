@@ -76,6 +76,8 @@ function mockGenerateContent({ systemPrompt, userPrompt }) {
 }
 
 function mockGenerateText({ prompt }) {
+  if (prompt.toLowerCase().includes('short')) return Promise.resolve('Make the product description more concise and shorter.');
+  if (prompt.toLowerCase().includes('long')) return Promise.resolve('Make the product description more detailed and longer.');
   return Promise.resolve('Be more specific and grounded in the referenced material category when phrasing care instructions.');
 }
 

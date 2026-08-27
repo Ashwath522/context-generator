@@ -27,7 +27,24 @@ function loadPriceBands() {
 }
 
 async function generateOne(product, priceBands, attempt = 1, conv_id = null) {
-  const { systemPrompt, userPrompt, careMatch } = buildPrompt(product, priceBands);
+  let relaxLengthCheck = false;
+  let lengthDirection = null;
+
+  if (conv_id) {
+    const turns = getSessionAdjustments(conv_id);
+    if (turns.length > 0) {
+      const latestTurn = turns[turns.length - 1];
+      if (/\b(short|brief|concis)/i.test(latestTurn.msg)) {
+        relaxLengthCheck = true;
+        lengthDirection = 'shorter';
+      } else if (/\b(long|length|detail)/i.test(latestTurn.msg)) {
+        relaxLengthCheck = true;
+        lengthDirection = 'longer';
+      }
+    }
+  }
+
+  const { systemPrompt, userPrompt, careMatch } = buildPrompt(product, priceBands, lengthDirection);
 
   const finalUserPrompt = conv_id
     ? applySessionAdjustments(conv_id, userPrompt)
@@ -71,17 +88,6 @@ async function generateOne(product, priceBands, attempt = 1, conv_id = null) {
       care_category_matched: careMatch.category
     }
   };
-
-  let relaxLengthCheck = false;
-  if (conv_id) {
-    const turns = getSessionAdjustments(conv_id);
-    if (turns.length > 0) {
-      const latestTurn = turns[turns.length - 1];
-      if (/\b(short|long|brief|concis|length|detail)\b/i.test(latestTurn.msg)) {
-        relaxLengthCheck = true;
-      }
-    }
-  }
 
   const result = validateItem(item, product, { relaxLengthCheck });
 
