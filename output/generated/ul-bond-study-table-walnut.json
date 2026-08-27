@@ -1,0 +1,70 @@
+{
+  "description": {
+    "summary": "This study table provides a dedicated workspace that encourages focus and organization within your home office or bedroom. The engineered wood construction offers a firm and stable surface, while the rich, warm tones create an inviting atmosphere for daily productivity. This is the Classic Walnut finish, which provides a timeless and grounding visual appeal, making it a confident choice for a home that values traditional warmth and professional clarity.",
+    "aesthetic_style": "Mid-century inspired with clean architectural lines",
+    "texture": "Uniform, dense, and finely grained to the touch",
+    "best_use": "Ideal for a focused home workstation or a quiet reading nook"
+  },
+  "specifications": {
+    "dimensions": "Length 1.00 m x Width 48.00 cm x Height 1.32 m",
+    "primary_material": "Engineered Wood",
+    "weight": "34.5 kg",
+    "assembly_required": "Requires Assembly",
+    "color_finish": "Classic Walnut"
+  },
+  "care_and_maintenance": {
+    "instructions": [
+      "Dust regularly with a soft, dry cloth",
+      "Wipe up spills promptly with a slightly damp cloth",
+      "Use coasters or mats under hot or wet items"
+    ],
+    "avoid": [
+      "Avoid harsh chemical or ammonia-based cleaners",
+      "Avoid dragging the piece across hard floors"
+    ]
+  },
+  "warranty": {
+    "applicable": true,
+    "duration_months": 12,
+    "status_line": "**Yes**, it has a warranty of **12 months**.",
+    "points": [
+      "Includes a 12-month manufacturer warranty period"
+    ],
+    "link": "https://example.com/warranty-policy-placeholder"
+  },
+  "returns": {
+    "window_days": "within **10 days**",
+    "condition": [
+      "Item must be unused and in original packaging",
+      "All original tags and labels must be attached",
+      "Proof of purchase is required"
+    ],
+    "policy_link": "https://example.com/returns-policy-placeholder"
+  },
+  "quality_promise": {
+    "statement": "Every study product is checked for finish, fit, and everyday usability before it reaches your home.",
+    "highlights": [
+      "Designed to feel dependable in daily use, with details reviewed for a cleaner ownership experience.",
+      "Supported by a 12-month warranty, so the purchase feels considered after delivery too.",
+      "Built for a properly finished setup with assembly handled as part of the ownership journey."
+    ],
+    "isi": {
+      "certified": false,
+      "label": "ISI Certified",
+      "logo": "static-asset-reference"
+    }
+  },
+  "_meta": {
+    "needs_review": true,
+    "care_category_matched": "Wood",
+    "validation_errors": [
+      "description.summary should be exactly 4 sentences; found 3",
+      "description.summary should be at least 90 words; found 69",
+      "Polite-tone flag (bare imperative, human review can override): \"Dust regularly with a soft, dry cloth\"",
+      "Polite-tone flag (bare imperative, human review can override): \"Wipe up spills promptly with a slightly damp cloth\"",
+      "Polite-tone flag (bare imperative, human review can override): \"Use coasters or mats under hot or wet items\"",
+      "Polite-tone flag (bare imperative, human review can override): \"Avoid harsh chemical or ammonia-based cleaners\"",
+      "Polite-tone flag (bare imperative, human review can override): \"Avoid dragging the piece across hard floors\""
+    ]
+  }
+}

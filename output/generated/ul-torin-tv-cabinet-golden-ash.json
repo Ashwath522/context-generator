@@ -1,0 +1,66 @@
+{
+  "description": {
+    "summary": "The Torin TV cabinet provides a grounded foundation for your media setup, offering a practical storage solution that keeps your living space organized and clutter-free. Its organic grain patterns offer a warm, inviting tactile experience, while the clean-lined silhouette provides a composed visual presence that anchors the room. This is the Golden Ash finish, which highlights the natural character of the wood grain, and it is also available in Danish Walnut, making it a confident choice for a home that values timeless warmth.",
+    "aesthetic_style": "Mid-century inspired with a clean, understated profile",
+    "texture": "Natural, grain-rich, and substantial to the touch",
+    "best_use": "Supporting media components and organizing living room essentials"
+  },
+  "specifications": {
+    "dimensions": "Length 45.00 cm x Width 1.60 m x Height 50.00 cm",
+    "primary_material": "Solid Wood (Mango)",
+    "weight": "50.2 kg",
+    "assembly_required": "Requires Assembly",
+    "color_finish": "Golden Ash"
+  },
+  "care_and_maintenance": {
+    "instructions": [
+      "We recommend dusting regularly with a soft, dry cloth",
+      "We recommend wiping up spills promptly with a slightly damp cloth",
+      "We recommend applying a wood-safe polish or wax every few months"
+    ],
+    "avoid": [
+      "It's best to avoid harsh chemical or ammonia-based cleaners",
+      "It's best to avoid dragging the piece across hard floors"
+    ]
+  },
+  "warranty": {
+    "applicable": true,
+    "duration_months": 36,
+    "status_line": "**Yes**, it has a warranty of **36 months**.",
+    "points": [
+      "Covers manufacturing defects under normal household use",
+      "Valid for 36 months from the date of purchase"
+    ],
+    "link": "https://example.com/warranty-policy-placeholder"
+  },
+  "returns": {
+    "window_days": "within **15 days**",
+    "condition": [
+      "Item must be unused and in original packaging",
+      "All original tags and labels must be attached",
+      "Proof of purchase is required"
+    ],
+    "policy_link": "https://example.com/returns-policy-placeholder"
+  },
+  "quality_promise": {
+    "statement": "Every living room product is checked for finish, fit, and everyday usability before it reaches your home.",
+    "highlights": [
+      "Designed to feel dependable in daily use, with details reviewed for a cleaner ownership experience.",
+      "Supported by a 36-month warranty, so the purchase feels considered after delivery too.",
+      "Built for a properly finished setup with assembly handled as part of the ownership journey."
+    ],
+    "isi": {
+      "certified": false,
+      "label": "ISI Certified",
+      "logo": "static-asset-reference"
+    }
+  },
+  "_meta": {
+    "needs_review": true,
+    "care_category_matched": "Wood",
+    "validation_errors": [
+      "description.summary should be exactly 4 sentences; found 3",
+      "description.summary should be at least 90 words; found 83"
+    ]
+  }
+}

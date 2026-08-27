@@ -1,0 +1,67 @@
+{
+  "description": {
+    "summary": "The Luna sofa provides a foundational seating solution for your living room, anchoring the space with a balanced design that supports relaxed daily lounging. Its woven exterior offers a soft, inviting touch, while the tailored silhouette presents a clean, composed visual profile that elevates the surrounding decor. This is the 3 Seater size, offering generous room for family and guests, and it is also available in 1 Seater. This is the Slate Grey finish, which provides a versatile, neutral tone that grounds the room, and it is also available in Marine Blue, making it a confident choice for a home that values understated elegance.",
+    "aesthetic_style": "Contemporary and streamlined",
+    "texture": "Plush and finely woven",
+    "best_use": "Ideal for central placement in a shared living area"
+  },
+  "specifications": {
+    "dimensions": "Length 83.00 cm x Width 1.89 m x Height 86.50 cm",
+    "primary_material": "Fabric",
+    "weight": "50 kg",
+    "assembly_required": "Requires Assembly",
+    "seating_capacity": "3 Seater",
+    "color_finish": "Slate Grey"
+  },
+  "care_and_maintenance": {
+    "instructions": [
+      "Vacuum regularly using a soft brush attachment",
+      "Blot spills immediately with a clean, absorbent cloth",
+      "Rotate cushions periodically for even wear"
+    ],
+    "avoid": [
+      "Avoid rubbing stains, as this can spread them",
+      "Avoid direct sunlight for extended periods to prevent fading"
+    ]
+  },
+  "warranty": {
+    "applicable": true,
+    "duration_months": 12,
+    "status_line": "**Yes**, it has a warranty of **12 months**.",
+    "points": [
+      "Covers manufacturing defects under normal use",
+      "Includes structural components"
+    ],
+    "link": "https://example.com/warranty-policy-placeholder"
+  },
+  "returns": {
+    "window_days": "within **15 days**",
+    "condition": [
+      "Item must be unused and in original packaging",
+      "All original tags and labels must be attached",
+      "Proof of purchase is required"
+    ],
+    "policy_link": "https://example.com/returns-policy-placeholder"
+  },
+  "quality_promise": {
+    "statement": "Every living room product is checked for finish, fit, and everyday usability before it reaches your home.",
+    "highlights": [
+      "Designed to feel dependable in daily use, with details reviewed for a cleaner ownership experience.",
+      "Supported by a 12-month warranty, so the purchase feels considered after delivery too.",
+      "Built for a properly finished setup with assembly handled as part of the ownership journey."
+    ],
+    "isi": {
+      "certified": false,
+      "label": "ISI Certified",
+      "logo": "static-asset-reference"
+    }
+  },
+  "_meta": {
+    "needs_review": true,
+    "care_category_matched": "Fabric",
+    "validation_errors": [
+      "Polite-tone flag (bare imperative, human review can override): \"Avoid rubbing stains, as this can spread them\"",
+      "Polite-tone flag (bare imperative, human review can override): \"Avoid direct sunlight for extended periods to prevent fading\""
+    ]
+  }
+}

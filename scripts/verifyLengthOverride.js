@@ -46,11 +46,13 @@ async function run() {
   
   startConversation({ conv_id, user: 'test', product_id: product.id, msg: 'Initial' });
   
+  retryCount = 0; // reset for initial
   console.log('Generating initial...');
   const res1 = await generateOne(product, priceBands, 1, conv_id);
   const text1 = res1.description.summary;
   const w1 = await countWords(text1);
   const s1 = countSentences(text1);
+  const initialRetries = retryCount;
   
   retryCount = 0; // reset for shorter
   console.log('Generating shorter...');
@@ -80,7 +82,7 @@ async function run() {
   console.log('==============================');
   console.log('| Turn    | Words | Sentences | Delta from Initial | Retries |');
   console.log('|---------|-------|-----------|--------------------|---------|');
-  console.log(`| Initial | ${w1.toString().padEnd(5)} | ${s1.toString().padEnd(9)} | N/A                | -       |`);
+  console.log(`| Initial | ${w1.toString().padEnd(5)} | ${s1.toString().padEnd(9)} | N/A                | ${initialRetries}       |`);
   console.log(`| Shorter | ${w2.toString().padEnd(5)} | ${s2.toString().padEnd(9)} | ${((w2 - w1) / w1 * 100).toFixed(1)}%             | ${shorterRetries}       |`);
   console.log(`| Longer  | ${w3.toString().padEnd(5)} | ${s3.toString().padEnd(9)} | +${((w3 - w1) / w1 * 100).toFixed(1)}%            | ${longerRetries}       |`);
   console.log('==============================\n');
@@ -100,6 +102,10 @@ async function run() {
 
     // Check sibling mentions
     for (const sibling of allSiblings) {
+      if (!includesNormalized(text1, sibling)) {
+        console.error(`FAIL (Initial): Missing sibling mention for "${sibling}"`);
+        failed = true;
+      }
       if (!includesNormalized(text2, sibling)) {
         console.error(`FAIL (Shorter): Missing sibling mention for "${sibling}"`);
         failed = true;
@@ -111,6 +117,10 @@ async function run() {
     }
 
     // Check retries
+    if (initialRetries > 0) {
+      console.error(`FAIL: Initial generation triggered ${initialRetries} retries.`);
+      failed = true;
+    }
     if (shorterRetries > 0) {
       console.error(`FAIL: Shorter generation triggered ${shorterRetries} retries.`);
       failed = true;

@@ -106,12 +106,11 @@ RULES:
        facts here.
    If you find yourself repeating a word like "sleek", "smooth", or the
    finish/material name across two fields, rewrite one of them.
-9. VARIANT GROUNDING. If the source data specifies a particular variant
-   this product represents — e.g. a seating capacity ({{VARIANT_SEATING}})
-   or a color/finish ({{VARIANT_COLOR}}) — the description must reflect
-   THAT exact variant only. Never mention other sizes, seat counts, or
-   colors that are not this specific variant, EXCEPT where rule 10
-   explicitly allows naming sibling variants that were given to you.
+ 9. VARIANT GROUNDING. If the source data specifies a particular variant
+    this product represents — e.g. a seating capacity ({{VARIANT_SEATING}})
+    or a color/finish ({{VARIANT_COLOR}}) — the description must reflect
+    THAT exact variant only. Never mention other sizes, seat counts, or
+    colors that are not this specific variant.
 10. SUMMARY STRUCTURE — one idea per sentence, in this exact order, and
     NEVER include the raw L x W x H / m / cm dimension string anywhere
     in summary — that lives only in specifications. The sentence count
@@ -125,31 +124,10 @@ RULES:
         visual impression, ending in a short emotional or functional
         payoff. Do not mention size or color by name here — texture and
         style words only.
-      Sentence 3 — SIZE (ONLY if a size/seating/capacity variant field
-        is given in PRODUCT INPUT — omit this sentence entirely if none
-        was given, do not invent a substitute or talk about dimensions
-        instead):
-        "This is the {size} size, {one short shopper-benefit clause tied
-        to this specific size}, and it is also available in {sibling
-        sizes, comma-separated}."
-        Drop the "and it is also available in..." clause if no sibling
-        sizes were listed.
-      Sentence 4 — FINISH (ONLY if a color/finish variant field is given
-        — omit entirely if none was given, do not invent a substitute):
-        "This is the {color/finish} finish, which {reason}, and it is
-        also available in {sibling colors, comma-separated}, making it
-        a confident choice for {one short closing benefit}."
-        For {reason}: if PRODUCT INPUT supplies an explicit reason for
-        this color/finish, use that reason (lightly reworded is fine,
-        inventing a different one is not). If no reason was supplied,
-        compose a brief, plausible one grounded only in the finish name
-        itself — never invent a technical property to justify it.
-        Drop the "and it is also available in..." clause if no sibling
-        colors were listed.
-    A product with both a size and a color variant produces 4 sentences
-    total. A product with only one of the two produces 3. A product with
-    neither produces 2. Never pad with an extra sentence to hit a target
-    count, and never fold two of these ideas into one sentence.
+    Produce exactly 2 very long, highly detailed sentences total and aim
+    for approximately 80-100 words (the size and color details will be appended automatically).
+    Never pad with an extra sentence to hit a target count, and never
+    fold two of these ideas into one sentence.
 
     EXAMPLE (for calibration only — do not reuse this wording for other
     products):
@@ -157,14 +135,7 @@ RULES:
     dining area, with an extendable design that makes the room feel
     ready for both everyday meals and planned hosting. Its glass surface
     gives a smooth tactile feel, while the refined high-gloss impression
-    helps the table look composed without making the space feel heavy.
-    This is the 6 to 8 Extendable size, giving shoppers a flexible fit
-    for daily use and guest seating, and it is also available in 4 to 6
-    Extendable. This is the White Ceramic finish, which keeps compact
-    dining corners feeling open, and it is also available in Black
-    Marble High Gloss, White High Gloss, White Marble High Gloss, making
-    it a confident choice for a home that needs style and practical
-    adaptability."
+    helps the table look composed without making the space feel heavy."
 
    None of these facts may be repeated in aesthetic_style, texture, or
    best_use (see rule 8) — summary is the only field that states them.
@@ -192,7 +163,7 @@ function buildPrompt(product, priceBands, lengthDirection = null) {
 
   let schemaSubset = JSON.parse(JSON.stringify(LLM_GENERATED_SCHEMA_SUBSET));
   if (lengthDirection) {
-    const words = lengthDirection === 'shorter' ? '50-65' : '150-180';
+    const words = lengthDirection === 'shorter' ? '25-35' : '100-130';
     schemaSubset.description.summary = `CRITICAL OVERRIDE: Target ${words} words. The user requested this length.`;
   }
 
@@ -208,9 +179,9 @@ function buildPrompt(product, priceBands, lengthDirection = null) {
     .replace('{{LEARNED_RULES}}', formatLearnedRules(rules, product.category));
 
   if (lengthDirection) {
-    const words = lengthDirection === 'shorter' ? '50-65' : '150-180';
+    const words = lengthDirection === 'shorter' ? '25-35' : '100-130';
     const instruction = lengthDirection === 'shorter' 
-      ? `Keep it concise: target approximately ${words} words. Mention the sibling size and all sibling colors, but combine them into compact clauses rather than separate sentences. Do not drop mandatory sibling variants.`
+      ? `Keep it concise: target approximately ${words} words. Focus only on the core aesthetic, texture, size benefit, and finish benefit.`
       : `Expand on the product details: target approximately ${words} words and 6-8 sentences. Provide more descriptive detail.`;
     
     const parts = systemPrompt.split('10. SUMMARY STRUCTURE');
@@ -221,7 +192,7 @@ function buildPrompt(product, priceBands, lengthDirection = null) {
     The user explicitly demanded a ${lengthDirection.toUpperCase()} summary.
     ${instruction}
     NEVER include the raw L x W x H / m / cm dimension string anywhere in summary — that lives only in specifications.
-    Ensure you still cover the overview, texture, size, and finish, and YOU MUST STILL MENTION ALL SIBLING SIZES AND COLORS (do not omit them to save space).\n\n`;
+    Ensure you still cover the overview, texture, size benefit, and finish benefit.\n\n`;
         systemPrompt = parts[0] + replacement + 'LEARNED PREFERENCES' + subParts[1];
       }
     }
@@ -233,14 +204,6 @@ function buildPrompt(product, priceBands, lengthDirection = null) {
   if (product.seating_capacity) variantLines.push(`Primary size/seating variant (THIS product): ${product.seating_capacity}`);
   if (product.color_finish) variantLines.push(`Color / finish (THIS product): ${product.color_finish}`);
   if (product.color_reason) variantLines.push(`Reason this color/finish suits a shopper (use this, don't invent a different one): ${product.color_reason}`);
-  if (Array.isArray(product.available_sizes) && product.available_sizes.length) {
-    const others = product.available_sizes.filter((s) => s !== product.seating_capacity);
-    if (others.length) variantLines.push(`Also available in these sizes: ${others.join(', ')}`);
-  }
-  if (Array.isArray(product.available_colors) && product.available_colors.length) {
-    const others = product.available_colors.filter((c) => c !== product.color_finish);
-    if (others.length) variantLines.push(`Also available in these colors: ${others.join(', ')}`);
-  }
 
   let userPrompt = `PRODUCT INPUT:
 Name: ${product.name}
@@ -251,9 +214,9 @@ Raw source data: ${JSON.stringify(product, null, 2)}
 Generate the requested fields now.`;
 
   if (lengthDirection) {
-    const words = lengthDirection === 'shorter' ? '50-65' : '150-180';
+    const words = lengthDirection === 'shorter' ? '25-35' : '100-130';
     const instruction = lengthDirection === 'shorter'
-      ? `Keep it concise: target approximately ${words} words. Mention all sibling variants but combine them compactly.`
+      ? `Keep it concise: target approximately ${words} words. Focus on the core message without padding.`
       : `Expand on details: target approximately ${words} words.`;
 
     userPrompt += `\n\n=========================================
@@ -262,7 +225,7 @@ Generate the requested fields now.`;
 IGNORE ALL previous rules about sentence count for the summary. 
 The user explicitly demanded a ${lengthDirection.toUpperCase()} summary.
 ${instruction}
-Ensure you name the specific sibling sizes and colors, even if you have to weave them into a single dense sentence.`;
+DO NOT mention sibling sizes or colors. Just focus on describing this specific variant.`;
   }
 
   return { systemPrompt, userPrompt, tier, careMatch };

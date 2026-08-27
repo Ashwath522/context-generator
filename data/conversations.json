@@ -1,1 +1,465 @@
-{}
+{
+  "loop_1787809800816": {
+    "user": "cli-user",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "generate a summary",
+    "created_at": "2026-08-27T05:50:00.817Z",
+    "turns": [
+      {
+        "msg": "make it more lenghty",
+        "feedback": "Expand the product description by adding more descriptive detail and comprehensive feature explanations.",
+        "timestamp": "2026-08-27T05:50:16.737Z"
+      },
+      {
+        "msg": "make it sounf more premium",
+        "feedback": "Elevate the tone of the product description to sound more sophisticated, luxurious, and high-end.",
+        "timestamp": "2026-08-27T05:50:41.823Z"
+      },
+      {
+        "msg": "make it little short",
+        "feedback": "Condense the product description into a more concise version while retaining all key information.",
+        "timestamp": "2026-08-27T05:50:52.369Z"
+      },
+      {
+        "msg": "more shorter",
+        "feedback": "Condense the product description to be more concise and brief.",
+        "timestamp": "2026-08-27T05:51:00.358Z"
+      },
+      {
+        "msg": "make it shound modern styled one '",
+        "feedback": "Rewrite the product description using a modern, contemporary tone.",
+        "timestamp": "2026-08-27T05:51:25.445Z"
+      }
+    ]
+  },
+  "loop_1787810175257": {
+    "user": "cli-user",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "generate a summary",
+    "created_at": "2026-08-27T05:56:15.258Z",
+    "turns": [
+      {
+        "msg": "make it shorter",
+        "feedback": "Be more specific and grounded in the referenced material category when phrasing care instructions.",
+        "timestamp": "2026-08-27T05:56:15.295Z"
+      },
+      {
+        "msg": "make it more premium",
+        "feedback": "Be more specific and grounded in the referenced material category when phrasing care instructions.",
+        "timestamp": "2026-08-27T05:56:15.300Z"
+      }
+    ]
+  },
+  "test_conv_123": {
+    "user": "test_user",
+    "product_id": "test_product",
+    "original_msg": "Hello",
+    "created_at": "2026-08-27T05:59:46.247Z",
+    "turns": [
+      {
+        "msg": "make it short",
+        "feedback": "Be more specific and grounded in the referenced material category when phrasing care instructions.",
+        "timestamp": "2026-08-27T05:59:46.248Z"
+      },
+      {
+        "msg": "make it long",
+        "feedback": "Be more specific and grounded in the referenced material category when phrasing care instructions.",
+        "timestamp": "2026-08-27T05:59:46.248Z"
+      }
+    ]
+  },
+  "loop_1787810669453": {
+    "user": "cli-user",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "generate a summary",
+    "created_at": "2026-08-27T06:04:29.454Z",
+    "turns": [
+      {
+        "msg": "make it look more profeeinal",
+        "feedback": "Refine the product description to use a more professional, polished, and authoritative tone.",
+        "timestamp": "2026-08-27T06:04:41.696Z"
+      },
+      {
+        "msg": "make it little more lenghty",
+        "feedback": "Expand the product description by adding more descriptive detail and context.",
+        "timestamp": "2026-08-27T06:04:53.289Z"
+      },
+      {
+        "msg": "more legnty i need",
+        "feedback": "Expand the product description by adding more detailed information and descriptive content.",
+        "timestamp": "2026-08-27T06:05:08.440Z"
+      },
+      {
+        "msg": "more detailed way i need",
+        "feedback": "Expand the product description by adding more specific details and comprehensive information.",
+        "timestamp": "2026-08-27T06:05:25.912Z"
+      },
+      {
+        "msg": "more lenghty",
+        "feedback": "Expand the product description with more detailed information and descriptive language.",
+        "timestamp": "2026-08-27T06:05:37.025Z"
+      },
+      {
+        "msg": "more shorter i ned like in 3 lines i need",
+        "feedback": "Rewrite the product description to be concise and limited to exactly three lines.",
+        "timestamp": "2026-08-27T06:05:52.474Z"
+      }
+    ]
+  },
+  "test_override_1787811414491": {
+    "user": "test",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "Initial",
+    "created_at": "2026-08-27T06:16:54.491Z",
+    "turns": [
+      {
+        "msg": "make it noticeably shorter",
+        "feedback": "Condense the product description to its most essential information while maintaining clarity and impact.",
+        "timestamp": "2026-08-27T06:16:57.568Z"
+      },
+      {
+        "msg": "make it noticeably longer",
+        "feedback": "Expand the product description by adding more descriptive detail and comprehensive features.",
+        "timestamp": "2026-08-27T06:17:00.597Z"
+      }
+    ]
+  },
+  "test_override_1787811490094": {
+    "user": "test",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "Initial",
+    "created_at": "2026-08-27T06:18:10.095Z",
+    "turns": [
+      {
+        "msg": "make it noticeably shorter",
+        "feedback": "Condense the product description to its most essential information while maintaining clarity and impact.",
+        "timestamp": "2026-08-27T06:18:16.384Z"
+      },
+      {
+        "msg": "make it noticeably longer",
+        "feedback": "Expand the product description by adding more descriptive detail and comprehensive feature explanations.",
+        "timestamp": "2026-08-27T06:18:19.215Z"
+      }
+    ]
+  },
+  "test_override_1787811560319": {
+    "user": "test",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "Initial",
+    "created_at": "2026-08-27T06:19:20.320Z",
+    "turns": [
+      {
+        "msg": "make it noticeably shorter",
+        "feedback": "Condense the product description to its most essential information while maintaining clarity and impact.",
+        "timestamp": "2026-08-27T06:19:25.280Z"
+      },
+      {
+        "msg": "make it noticeably longer",
+        "feedback": "Expand the product description by adding more descriptive details and benefits to significantly increase its length.",
+        "timestamp": "2026-08-27T06:19:42.711Z"
+      }
+    ]
+  },
+  "test_override_1787811845172": {
+    "user": "test",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "Initial",
+    "created_at": "2026-08-27T06:24:05.172Z",
+    "turns": [
+      {
+        "msg": "make it noticeably shorter",
+        "feedback": "Condense the product description to its most essential information while maintaining clarity and impact.",
+        "timestamp": "2026-08-27T06:24:08.303Z"
+      },
+      {
+        "msg": "make it noticeably longer",
+        "feedback": "Expand the product description by adding more descriptive details and benefits to significantly increase its length.",
+        "timestamp": "2026-08-27T06:24:12.706Z"
+      }
+    ]
+  },
+  "test_override_1787811892622": {
+    "user": "test",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "Initial",
+    "created_at": "2026-08-27T06:24:52.623Z",
+    "turns": [
+      {
+        "msg": "make it noticeably shorter",
+        "feedback": "Condense the product description to its most essential information while maintaining clarity.",
+        "timestamp": "2026-08-27T06:24:58.158Z"
+      },
+      {
+        "msg": "make it noticeably longer",
+        "feedback": "Expand the product description by adding more descriptive detail and comprehensive feature explanations.",
+        "timestamp": "2026-08-27T06:25:03.391Z"
+      }
+    ]
+  },
+  "test_override_1787811959494": {
+    "user": "test",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "Initial",
+    "created_at": "2026-08-27T06:25:59.494Z",
+    "turns": [
+      {
+        "msg": "make it noticeably shorter",
+        "feedback": "Condense the product description to its most essential information while maintaining clarity.",
+        "timestamp": "2026-08-27T06:26:03.127Z"
+      },
+      {
+        "msg": "make it noticeably longer",
+        "feedback": "Expand the product description by adding more descriptive detail and comprehensive feature explanations.",
+        "timestamp": "2026-08-27T06:26:06.153Z"
+      }
+    ]
+  },
+  "test_override_1787812033866": {
+    "user": "test",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "Initial",
+    "created_at": "2026-08-27T06:27:13.866Z",
+    "turns": [
+      {
+        "msg": "make it noticeably shorter",
+        "feedback": "Condense the product description to its most essential information while maintaining clarity and impact.",
+        "timestamp": "2026-08-27T06:27:17.677Z"
+      },
+      {
+        "msg": "make it noticeably longer",
+        "feedback": "Expand the product description by adding more descriptive details and benefits to significantly increase its length.",
+        "timestamp": "2026-08-27T06:27:20.828Z"
+      }
+    ]
+  },
+  "test_override_1787812084598": {
+    "user": "test",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "Initial",
+    "created_at": "2026-08-27T06:28:04.598Z",
+    "turns": [
+      {
+        "msg": "make it noticeably shorter",
+        "feedback": "Condense the product description into a concise, punchy version while retaining all key features.",
+        "timestamp": "2026-08-27T06:28:10.003Z"
+      },
+      {
+        "msg": "make it noticeably longer",
+        "feedback": "Expand the product description by adding more descriptive detail and comprehensive features.",
+        "timestamp": "2026-08-27T06:28:15.073Z"
+      }
+    ]
+  },
+  "test_override_1787812121678": {
+    "user": "test",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "Initial",
+    "created_at": "2026-08-27T06:28:41.678Z",
+    "turns": [
+      {
+        "msg": "make it noticeably shorter",
+        "feedback": "Condense the product description to its most essential information while maintaining clarity and impact.",
+        "timestamp": "2026-08-27T06:28:44.864Z"
+      },
+      {
+        "msg": "make it noticeably longer",
+        "feedback": "Expand the product description by adding more descriptive detail and comprehensive feature explanations.",
+        "timestamp": "2026-08-27T06:28:49.709Z"
+      }
+    ]
+  },
+  "loop_1787812263283": {
+    "user": "cli-user",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "generate a summary",
+    "created_at": "2026-08-27T06:31:03.286Z",
+    "turns": [
+      {
+        "msg": "make it more shorter",
+        "feedback": "Condense the product description to be more concise while retaining all key information.",
+        "timestamp": "2026-08-27T06:31:13.659Z"
+      },
+      {
+        "msg": "make it lenghty",
+        "feedback": "Expand the product description by adding more descriptive details and comprehensive information.",
+        "timestamp": "2026-08-27T06:31:31.755Z"
+      },
+      {
+        "msg": "makw it look professinal",
+        "feedback": "Rewrite the product description to use a professional, polished, and authoritative tone.",
+        "timestamp": "2026-08-27T06:31:54.527Z"
+      },
+      {
+        "msg": "make it look asteic",
+        "feedback": "Rewrite the product description to feature a minimalist, elegant, and visually appealing tone.",
+        "timestamp": "2026-08-27T06:32:04.557Z"
+      },
+      {
+        "msg": "add bad words also so it feels friendl",
+        "feedback": "Incorporate casual profanity into the product description to create a friendly, informal tone.",
+        "timestamp": "2026-08-27T06:32:19.458Z"
+      },
+      {
+        "msg": "make it look cosy",
+        "feedback": "Rewrite the product description to evoke a warm, inviting, and comfortable atmosphere.",
+        "timestamp": "2026-08-27T06:32:46.850Z"
+      },
+      {
+        "msg": "make it less lengty",
+        "feedback": "Condense the product description to be more concise while retaining all key information.",
+        "timestamp": "2026-08-27T06:33:09.927Z"
+      },
+      {
+        "msg": "i need shorter",
+        "feedback": "Rewrite the product description to be more concise while retaining all key information.",
+        "timestamp": "2026-08-27T06:33:21.988Z"
+      },
+      {
+        "msg": "generate",
+        "feedback": "Generate a new product description based on the provided details.",
+        "timestamp": "2026-08-27T06:40:49.766Z"
+      },
+      {
+        "msg": "shorter",
+        "feedback": "Condense the product description to be as concise as possible while retaining all key information.",
+        "timestamp": "2026-08-27T06:40:58.191Z"
+      },
+      {
+        "msg": "lengthy",
+        "feedback": "Rewrite the product description to be more concise and brief.",
+        "timestamp": "2026-08-27T06:41:13.346Z"
+      },
+      {
+        "msg": "stop",
+        "feedback": "Cease all further modifications to the product description.",
+        "timestamp": "2026-08-27T06:43:20.848Z"
+      }
+    ]
+  },
+  "test_override_1787812641503": {
+    "user": "test",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "Initial",
+    "created_at": "2026-08-27T06:37:21.504Z",
+    "turns": [
+      {
+        "msg": "make it noticeably shorter",
+        "feedback": "Condense the product description to its most essential information while maintaining clarity and impact.",
+        "timestamp": "2026-08-27T06:37:35.578Z"
+      },
+      {
+        "msg": "make it noticeably longer",
+        "feedback": "Expand the product description by adding more descriptive detail and comprehensive features.",
+        "timestamp": "2026-08-27T06:37:40.563Z"
+      }
+    ]
+  },
+  "test_override_1787812779495": {
+    "user": "test",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "Initial",
+    "created_at": "2026-08-27T06:39:39.496Z",
+    "turns": [
+      {
+        "msg": "make it noticeably shorter",
+        "feedback": "Condense the product description to its most essential information while maintaining clarity and impact.",
+        "timestamp": "2026-08-27T06:39:47.105Z"
+      },
+      {
+        "msg": "make it noticeably longer",
+        "feedback": "Expand the product description by adding more descriptive details and benefits to significantly increase its length.",
+        "timestamp": "2026-08-27T06:39:55.013Z"
+      }
+    ]
+  },
+  "test_override_1787813298811": {
+    "user": "test",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "Initial",
+    "created_at": "2026-08-27T06:48:18.812Z",
+    "turns": [
+      {
+        "msg": "make it noticeably shorter",
+        "feedback": "Condense the product description to its most essential information while maintaining clarity and impact.",
+        "timestamp": "2026-08-27T06:48:27.486Z"
+      },
+      {
+        "msg": "make it noticeably longer",
+        "feedback": "Expand the product description by adding more descriptive detail and comprehensive feature explanations.",
+        "timestamp": "2026-08-27T06:48:31.210Z"
+      }
+    ]
+  },
+  "test_override_1787813401248": {
+    "user": "test",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "Initial",
+    "created_at": "2026-08-27T06:50:01.249Z",
+    "turns": [
+      {
+        "msg": "make it noticeably shorter",
+        "feedback": "Condense the product description to its most essential information while maintaining clarity and impact.",
+        "timestamp": "2026-08-27T06:50:08.435Z"
+      },
+      {
+        "msg": "make it noticeably longer",
+        "feedback": "Expand the product description by adding more descriptive detail and comprehensive feature explanations.",
+        "timestamp": "2026-08-27T06:50:12.946Z"
+      }
+    ]
+  },
+  "test_override_1787813483689": {
+    "user": "test",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "Initial",
+    "created_at": "2026-08-27T06:51:23.689Z",
+    "turns": [
+      {
+        "msg": "make it noticeably shorter",
+        "feedback": "Condense the product description to its most essential information while maintaining clarity and impact.",
+        "timestamp": "2026-08-27T06:51:33.665Z"
+      },
+      {
+        "msg": "make it noticeably longer",
+        "feedback": "Expand the product description by adding more descriptive details and benefits to significantly increase its length.",
+        "timestamp": "2026-08-27T06:51:36.451Z"
+      }
+    ]
+  },
+  "test_override_1787813571826": {
+    "user": "test",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "Initial",
+    "created_at": "2026-08-27T06:52:51.826Z",
+    "turns": [
+      {
+        "msg": "make it noticeably shorter",
+        "feedback": "Condense the product description to its most essential information while maintaining clarity and impact.",
+        "timestamp": "2026-08-27T06:52:57.180Z"
+      },
+      {
+        "msg": "make it noticeably longer",
+        "feedback": "Expand the product description by adding more descriptive detail and comprehensive feature explanations.",
+        "timestamp": "2026-08-27T06:53:00.337Z"
+      }
+    ]
+  },
+  "test_override_1787813668054": {
+    "user": "test",
+    "product_id": "ul-stanhope-king-shitake-beige",
+    "original_msg": "Initial",
+    "created_at": "2026-08-27T06:54:28.056Z",
+    "turns": [
+      {
+        "msg": "make it noticeably shorter",
+        "feedback": "Condense the product description to its most essential information while maintaining clarity and impact.",
+        "timestamp": "2026-08-27T06:54:31.885Z"
+      },
+      {
+        "msg": "make it noticeably longer",
+        "feedback": "Expand the product description by adding more descriptive detail and comprehensive feature explanations.",
+        "timestamp": "2026-08-27T06:54:35.210Z"
+      }
+    ]
+  }
+}

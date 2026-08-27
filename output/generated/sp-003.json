@@ -1,6 +1,6 @@
 {
   "description": {
-    "summary": "Wrought Iron Bar Stool brings a considered addition to any dining space, combining everyday usability with thoughtful design.",
+    "summary": "Wrought Iron Bar Stool brings a complete, inviting feel to any dining space, pairing everyday usability with a composed aesthetic that helps shoppers imagine the piece in their home. Its surface feels smooth and easy to live with, creating a tactile impression that supports comfort, relaxed use, and a more finished room. This is the selected size variant, chosen for shoppers who want the right fit for daily comfort and practical space planning. This selected finish finish gives the room a grounded, easy-to-style character, making the purchase feel thoughtful and ready for real homes.",
     "aesthetic_style": "Clean lines with a calm, understated presence.",
     "texture": "Smooth to the touch with a natural, tactile finish.",
     "best_use": "Well suited to everyday dining use, where both form and function matter."
@@ -25,10 +25,11 @@
   "warranty": {
     "applicable": true,
     "duration_months": 6,
-    "status_line": "This product comes with a **Yes** warranty, valid for **12 months**.",
+    "status_line": "**Yes**, it has a warranty of **6 months**.",
     "points": [
       "Covers manufacturing defects in materials and workmanship.",
-      "Excludes damage from misuse or normal wear and tear."
+      "Covers defects in the production finish under normal use.",
+      "Excludes accidental damage or misuse."
     ],
     "link": "https://example.com/warranty-policy-placeholder"
   },
@@ -42,10 +43,11 @@
     "policy_link": "https://example.com/returns-policy-placeholder"
   },
   "quality_promise": {
-    "statement": "Every dining product we offer is inspected for quality and built to stand up to everyday life.",
+    "statement": "Every dining product is checked for finish, fit, and everyday usability before it reaches your home.",
     "highlights": [
-      "Backed by our 6-month warranty for added peace of mind.",
-      "Arrives ready to use, with no assembly required."
+      "Designed to feel dependable in daily use, with details reviewed for a cleaner ownership experience.",
+      "Supported by a 6-month warranty, so the purchase feels considered after delivery too.",
+      "Arrives ready to use, making setup simple from the start."
     ],
     "isi": {
       "certified": false,

@@ -1,0 +1,66 @@
+{
+  "description": {
+    "summary": "The Stanhope bed frame provides a sturdy foundation for restful nights while incorporating convenient hydraulic storage to maximize your bedroom organization. Its engineered wood construction offers a firm, reliable surface paired with a clean-lined silhouette that anchors the room with quiet sophistication. This is the King size, offering generous dimensions for comfortable movement, and it is also available in Queen. This is the Shitake Beige finish, which brings a warm, neutral tone to your sleeping quarters, and it is also available in Baltic Blue, Sienna Brown, Urban Grey, making it a confident choice for a serene sanctuary.",
+    "aesthetic_style": "Contemporary transitional",
+    "texture": "Uniformly matte and dense",
+    "best_use": "Primary bedroom suites requiring hidden under-bed organization"
+  },
+  "specifications": {
+    "dimensions": "Length 2.09 m x Width 2.42 m x Height 99.80 cm",
+    "primary_material": "Engineered Wood",
+    "weight": "230 kg",
+    "assembly_required": "Requires Assembly",
+    "seating_capacity": "King",
+    "color_finish": "Shitake Beige"
+  },
+  "care_and_maintenance": {
+    "instructions": [
+      "We recommend dusting regularly with a soft, dry cloth",
+      "Wipe up spills promptly with a slightly damp cloth",
+      "Keep the piece away from direct, prolonged sunlight"
+    ],
+    "avoid": [
+      "It's best to avoid harsh chemical or ammonia-based cleaners",
+      "It's best to avoid dragging the piece across hard floors"
+    ]
+  },
+  "warranty": {
+    "applicable": true,
+    "duration_months": 12,
+    "status_line": "**Yes**, it has a warranty of **12 months**.",
+    "points": [
+      "Covers defects in materials and workmanship under normal household use"
+    ],
+    "link": "https://example.com/warranty-policy-placeholder"
+  },
+  "returns": {
+    "window_days": "within **15 days**",
+    "condition": [
+      "Item must be unused and in original packaging",
+      "All original tags and labels must be attached",
+      "Proof of purchase is required"
+    ],
+    "policy_link": "https://example.com/returns-policy-placeholder"
+  },
+  "quality_promise": {
+    "statement": "Every bedroom product is checked for finish, fit, and everyday usability before it reaches your home.",
+    "highlights": [
+      "Designed to feel dependable in daily use, with details reviewed for a cleaner ownership experience.",
+      "Supported by a 12-month warranty, so the purchase feels considered after delivery too.",
+      "Built for a properly finished setup with assembly handled as part of the ownership journey."
+    ],
+    "isi": {
+      "certified": false,
+      "label": "ISI Certified",
+      "logo": "static-asset-reference"
+    }
+  },
+  "_meta": {
+    "needs_review": true,
+    "care_category_matched": "Wood",
+    "validation_errors": [
+      "Polite-tone flag (bare imperative, human review can override): \"Wipe up spills promptly with a slightly damp cloth\"",
+      "Polite-tone flag (bare imperative, human review can override): \"Keep the piece away from direct, prolonged sunlight\""
+    ]
+  }
+}

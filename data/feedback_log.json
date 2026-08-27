@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "id": "fb_1786950736424_4u179q",
+    "product_id": "sp-001",
+    "category": "Dining",
+    "field": "care_and_maintenance",
+    "original_output": "generic wood care",
+    "feedback_text": "Be more specific about the exact wood type (e.g. Sheesham, oak) in every care instruction instead of saying generic wood.",
+    "timestamp": "2026-08-17T07:12:16.424Z"
+  }
+]

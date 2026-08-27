@@ -61,6 +61,40 @@ async function generateOne(product, priceBands, attempt = 1, conv_id = null) {
     }
   }
 
+  // Construct deterministic sibling strings to append to the LLM's core summary.
+  let deterministicSiblings = '';
+  const normalize = (v) => String(v).trim().toLowerCase();
+  const siblingSizes = Array.isArray(product.available_sizes) 
+    ? product.available_sizes.filter((s) => normalize(s) !== normalize(product.seating_capacity))
+    : [];
+  const siblingColors = Array.isArray(product.available_colors)
+    ? product.available_colors.filter((c) => normalize(c) !== normalize(product.color_finish))
+    : [];
+
+  if (product.seating_capacity) {
+    if (siblingSizes.length > 0) {
+      deterministicSiblings += ` This is the ${product.seating_capacity} size, and it is also available in ${siblingSizes.join(', ')}.`;
+    } else {
+      deterministicSiblings += ` This is the ${product.seating_capacity} size.`;
+    }
+  } else if (siblingSizes.length > 0) {
+    deterministicSiblings += ` Also available in ${siblingSizes.join(', ')}.`;
+  }
+  
+  if (product.color_finish) {
+    if (siblingColors.length > 0) {
+      deterministicSiblings += ` This is the ${product.color_finish} finish, and it is also available in ${siblingColors.join(', ')}.`;
+    } else {
+      deterministicSiblings += ` This is the ${product.color_finish} finish.`;
+    }
+  } else if (siblingColors.length > 0) {
+    deterministicSiblings += ` Also available in ${siblingColors.join(', ')}.`;
+  }
+
+  if (deterministicSiblings) {
+    llmOutput.description.summary = (llmOutput.description.summary || '').trim() + deterministicSiblings;
+  }
+
   // returns: pure lookup, LLM never touches this field.
   const returns = getReturnsBlock(product.category);
 

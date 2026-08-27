@@ -1,1 +1,5 @@
-{}
+{
+  "Dining": {
+    "care_and_maintenance": "Specify the exact wood type (e.g., Sheesham, oak) in all care and maintenance instructions instead of using generic terms like \"wood.\""
+  }
+}

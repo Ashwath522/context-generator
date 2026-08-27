@@ -1,0 +1,60 @@
+{
+  "description": {
+    "summary": "These bedsheets provide a reliable foundation for restful sleep while ensuring your bedroom remains organized and inviting. The poly cotton blend offers a crisp, breathable sensation that pairs well with a vibrant, saturated visual presence to enliven your sleep space. This is the Single size, which provides a tailored fit for standard mattresses, and it is also available in Double, Queen, King. This is the Magenta finish, which adds a bold pop of color to brighten neutral decor, making it a confident choice for those looking to refresh their bedroom palette.",
+    "aesthetic_style": "Contemporary and vivid",
+    "texture": "Lightweight and breathable with a crisp hand",
+    "best_use": "Ideal for daily bedding in guest rooms or primary suites"
+  },
+  "specifications": {
+    "dimensions": "Length 2.15 m x Width 2.59 m x Height 1.00 cm",
+    "primary_material": "Poly Cotton",
+    "weight": "0.81 kg",
+    "assembly_required": "Pre Assembled",
+    "color_finish": "Magenta"
+  },
+  "care_and_maintenance": {
+    "instructions": [
+      "We recommend vacuuming regularly using a soft brush attachment",
+      "It is best to blot spills immediately with a clean, absorbent cloth",
+      "We recommend rotating cushions periodically for even wear"
+    ],
+    "avoid": [
+      "It is best to avoid rubbing stains, as this can spread them",
+      "It is best to avoid direct sunlight for extended periods to prevent fading"
+    ]
+  },
+  "warranty": {
+    "applicable": false,
+    "duration_months": null,
+    "status_line": "**No**, it has a warranty of **0 months**.",
+    "points": [
+      "Product is delivered pre-assembled",
+      "Warranty coverage is not provided for this item"
+    ],
+    "link": "https://example.com/warranty-policy-placeholder"
+  },
+  "returns": {
+    "window_days": "within **10 days**",
+    "condition": [
+      "Item must be unused and in original packaging",
+      "All original tags and labels must be attached",
+      "Proof of purchase is required"
+    ],
+    "policy_link": "https://example.com/returns-policy-placeholder"
+  },
+  "quality_promise": {
+    "statement": "Every furnishing product is checked for finish, fit, and everyday usability before it reaches your home.",
+    "highlights": [
+      "Designed to feel dependable in daily use, with details reviewed for a cleaner ownership experience."
+    ],
+    "isi": {
+      "certified": false,
+      "label": "ISI Certified",
+      "logo": "static-asset-reference"
+    }
+  },
+  "_meta": {
+    "needs_review": false,
+    "care_category_matched": "Fabric"
+  }
+}
