@@ -115,7 +115,8 @@ async function generateBatch(products) {
     } catch (err) {
       results.push({ id: product.id, status: 'error', error: err.message });
     }
-    const delayMs = parseInt(process.env.GENERATE_DELAY_MS, 10) || 15000;
+    const delayStr = process.env.GENERATE_DELAY_MS;
+    const delayMs = delayStr !== undefined ? parseInt(delayStr, 10) : 15000;
     await new Promise(r => setTimeout(r, delayMs));
   }
 
