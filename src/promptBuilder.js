@@ -192,9 +192,8 @@ function buildPrompt(product, priceBands, lengthDirection = null) {
 
   let schemaSubset = JSON.parse(JSON.stringify(LLM_GENERATED_SCHEMA_SUBSET));
   if (lengthDirection) {
-    const words = lengthDirection === 'shorter' ? '40-60' : '150-180';
-    const sentences = lengthDirection === 'shorter' ? '2' : '6-8';
-    schemaSubset.description.summary = `CRITICAL OVERRIDE: Exactly ${sentences} sentences, ${words} words. The user requested this length.`;
+    const words = lengthDirection === 'shorter' ? '50-65' : '150-180';
+    schemaSubset.description.summary = `CRITICAL OVERRIDE: Target ${words} words. The user requested this length.`;
   }
 
   let systemPrompt = SYSTEM_PROMPT_TEMPLATE
@@ -209,18 +208,20 @@ function buildPrompt(product, priceBands, lengthDirection = null) {
     .replace('{{LEARNED_RULES}}', formatLearnedRules(rules, product.category));
 
   if (lengthDirection) {
-    const words = lengthDirection === 'shorter' ? '40-60' : '150-180';
-    const sentences = lengthDirection === 'shorter' ? '2' : '6-8';
+    const words = lengthDirection === 'shorter' ? '50-65' : '150-180';
+    const instruction = lengthDirection === 'shorter' 
+      ? `Keep it concise: target approximately ${words} words. Mention the sibling size and all sibling colors, but combine them into compact clauses rather than separate sentences. Do not drop mandatory sibling variants.`
+      : `Expand on the product details: target approximately ${words} words and 6-8 sentences. Provide more descriptive detail.`;
     
     const parts = systemPrompt.split('10. SUMMARY STRUCTURE');
     if (parts.length === 2) {
       const subParts = parts[1].split('LEARNED PREFERENCES');
       if (subParts.length === 2) {
         const replacement = `10. SUMMARY STRUCTURE - CRITICAL LENGTH OVERRIDE:
-    You MUST write EXACTLY ${sentences} sentences and target ${words} words for the \`description.summary\`.
     The user explicitly demanded a ${lengthDirection.toUpperCase()} summary.
-    If you output the standard 4 sentences, you will fail the user's explicit command.
-    How to do this: Combine or expand the overview, texture, size, and finish details so that they fit perfectly into EXACTLY ${sentences} sentences. Do not omit the size or finish, just weave them together.\n\n`;
+    ${instruction}
+    NEVER include the raw L x W x H / m / cm dimension string anywhere in summary — that lives only in specifications.
+    Ensure you still cover the overview, texture, size, and finish, and YOU MUST STILL MENTION ALL SIBLING SIZES AND COLORS (do not omit them to save space).\n\n`;
         systemPrompt = parts[0] + replacement + 'LEARNED PREFERENCES' + subParts[1];
       }
     }
@@ -250,16 +251,18 @@ Raw source data: ${JSON.stringify(product, null, 2)}
 Generate the requested fields now.`;
 
   if (lengthDirection) {
-    const words = lengthDirection === 'shorter' ? '40-60' : '150-180';
-    const sentences = lengthDirection === 'shorter' ? '2' : '6-8';
+    const words = lengthDirection === 'shorter' ? '50-65' : '150-180';
+    const instruction = lengthDirection === 'shorter'
+      ? `Keep it concise: target approximately ${words} words. Mention all sibling variants but combine them compactly.`
+      : `Expand on details: target approximately ${words} words.`;
+
     userPrompt += `\n\n=========================================
 !!! CRITICAL OVERRIDE FOR THIS TURN !!!
 =========================================
-IGNORE ALL previous rules about summary length. 
+IGNORE ALL previous rules about sentence count for the summary. 
 The user explicitly demanded a ${lengthDirection.toUpperCase()} summary.
-You MUST write EXACTLY ${sentences} sentences and target ${words} words for the \`description.summary\`.
-If you output the standard 4 sentences, you will fail the user's explicit command.
-Condense or expand your writing to hit exactly ${sentences} sentences.`;
+${instruction}
+Ensure you name the specific sibling sizes and colors, even if you have to weave them into a single dense sentence.`;
   }
 
   return { systemPrompt, userPrompt, tier, careMatch };
