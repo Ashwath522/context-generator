@@ -111,37 +111,41 @@ RULES:
     or a color/finish ({{VARIANT_COLOR}}) — the description must reflect
     THAT exact variant only. Never mention other sizes, seat counts, or
     colors that are not this specific variant.
-10. SUMMARY STRUCTURE — one idea per sentence, in this exact order, and
-    NEVER include the raw L x W x H / m / cm dimension string anywhere
-    in summary — that lives only in specifications. The sentence count
-    is NOT fixed — it depends on which variant facts this product
-    actually has:
-      Sentence 1 — OVERVIEW (always present): what the product is, its
-        main functional or aesthetic promise, and one concrete usage
-        benefit. Do not mention size or color here.
-      Sentence 2 — FEEL (always present): the tactile/texture impression
-        of the primary material paired with one style/finish-level
-        visual impression, ending in a short emotional or functional
-        payoff. Do not mention size or color by name here — texture and
-        style words only.
-    Produce exactly 2 very long, highly detailed sentences total and aim
-    for approximately 80-100 words (the size and color details will be appended automatically).
-    Never pad with an extra sentence to hit a target count, and never
-    fold two of these ideas into one sentence.
+    NEVER enumerate sibling variants (e.g. available sizes, colors, storage options) in prose. These will be added programmatically as bullets later.
+10. PROSE STRUCTURE — Follow this exact 4-part formula:
+      Part 1 — MOOD LINE: A short emotional hook setting the tone. Do not use the product name here.
+      Part 2 — INTRO: Names the product type + its single most distinctive design hook ({{DESIGN_DETAILS}}).
+      Part 3 — STORY: 1-2 paragraphs detailing material, construction, and secondary details based on category emphasis.
+      Part 4 — CLOSE: Names the product BY SHORT NAME exactly once ({{SHORT_NAME}}), circling back to the mood.
+    Produce the prose targeting ~70-110 words across 4-6 sentences.
 
-    EXAMPLE (for calibration only — do not reuse this wording for other
-    products):
-    "The Caribu dining table brings a clean, polished aesthetic to the
-    dining area, with an extendable design that makes the room feel
-    ready for both everyday meals and planned hosting. Its glass surface
-    gives a smooth tactile feel, while the refined high-gloss impression
-    helps the table look composed without making the space feel heavy."
-
-   None of these facts may be repeated in aesthetic_style, texture, or
-   best_use (see rule 8) — summary is the only field that states them.
+    CATEGORY RULES for {{CATEGORY}} / {{SUBCATEGORY}}:
+    Emphasis: {{CATEGORY_EMPHASIS}}
+    Avoid: {{CATEGORY_AVOID}}
+    Tone: {{CATEGORY_TONE}}
 
 LEARNED PREFERENCES (feedback-derived rules):
 {{LEARNED_RULES}}`;
+
+function loadCategoryRules(category, subcategory) {
+  const baseDir = path.join(__dirname, '..', 'data', 'categoryPrompts');
+  const catPath = category ? path.join(baseDir, category) : null;
+  const subPath = (catPath && subcategory) ? path.join(catPath, `${subcategory}.json`) : null;
+  const catDefPath = catPath ? path.join(catPath, '_default.json') : null;
+  const globalDefPath = path.join(baseDir, '_default.json');
+  
+  let rules = null;
+  if (subPath && fs.existsSync(subPath)) {
+    try { rules = JSON.parse(fs.readFileSync(subPath, 'utf-8')); } catch(e){}
+  }
+  if (!rules && catDefPath && fs.existsSync(catDefPath)) {
+    try { rules = JSON.parse(fs.readFileSync(catDefPath, 'utf-8')); } catch(e){}
+  }
+  if (!rules && fs.existsSync(globalDefPath)) {
+    try { rules = JSON.parse(fs.readFileSync(globalDefPath, 'utf-8')); } catch(e){}
+  }
+  return rules || { emphasis_points: [], avoid_list: [], tone_notes: "" };
+}
 
 function formatLearnedRules(rules, category) {
   const categoryRules = rules[category];
@@ -163,9 +167,11 @@ function buildPrompt(product, priceBands, lengthDirection = null) {
 
   let schemaSubset = JSON.parse(JSON.stringify(LLM_GENERATED_SCHEMA_SUBSET));
   if (lengthDirection) {
-    const words = lengthDirection === 'shorter' ? '25-35' : '100-130';
+    const words = lengthDirection === 'shorter' ? '40-60' : '120-150';
     schemaSubset.description.summary = `CRITICAL OVERRIDE: Target ${words} words. The user requested this length.`;
   }
+
+  const categoryRules = loadCategoryRules(product.category, product.subcategory);
 
   let systemPrompt = SYSTEM_PROMPT_TEMPLATE
     .replace('{{SCHEMA_SUBSET}}', JSON.stringify(schemaSubset, null, 2))
@@ -176,23 +182,30 @@ function buildPrompt(product, priceBands, lengthDirection = null) {
     .replace('{{MATCHED_AVOID}}', JSON.stringify(careMatch.avoid))
     .replace('{{VARIANT_SEATING}}', variantSeating)
     .replace('{{VARIANT_COLOR}}', variantColor)
+    .replace('{{CATEGORY}}', product.category || 'Unknown')
+    .replace('{{SUBCATEGORY}}', product.subcategory || 'Unknown')
+    .replace('{{DESIGN_DETAILS}}', product.design_details || 'its unique build')
+    .replace('{{SHORT_NAME}}', product.product_short_name || product.name.split(' ')[0])
+    .replace('{{CATEGORY_EMPHASIS}}', JSON.stringify(categoryRules.emphasis_points))
+    .replace('{{CATEGORY_AVOID}}', JSON.stringify(categoryRules.avoid_list))
+    .replace('{{CATEGORY_TONE}}', categoryRules.tone_notes)
     .replace('{{LEARNED_RULES}}', formatLearnedRules(rules, product.category));
 
   if (lengthDirection) {
-    const words = lengthDirection === 'shorter' ? '25-35' : '100-130';
+    const words = lengthDirection === 'shorter' ? '40-60' : '120-150';
     const instruction = lengthDirection === 'shorter' 
-      ? `Keep it concise: target approximately ${words} words. Focus only on the core aesthetic, texture, size benefit, and finish benefit.`
-      : `Expand on the product details: target approximately ${words} words and 6-8 sentences. Provide more descriptive detail.`;
+      ? `Keep it concise: target approximately ${words} words. Compress the prose but maintain the 4-part formula.`
+      : `Expand on the product details: target approximately ${words} words. Provide more descriptive detail.`;
     
-    const parts = systemPrompt.split('10. SUMMARY STRUCTURE');
+    const parts = systemPrompt.split('10. PROSE STRUCTURE');
     if (parts.length === 2) {
       const subParts = parts[1].split('LEARNED PREFERENCES');
       if (subParts.length === 2) {
-        const replacement = `10. SUMMARY STRUCTURE - CRITICAL LENGTH OVERRIDE:
+        const replacement = `10. PROSE STRUCTURE - CRITICAL LENGTH OVERRIDE:
     The user explicitly demanded a ${lengthDirection.toUpperCase()} summary.
     ${instruction}
     NEVER include the raw L x W x H / m / cm dimension string anywhere in summary — that lives only in specifications.
-    Ensure you still cover the overview, texture, size benefit, and finish benefit.\n\n`;
+    Ensure you still follow the 4-part formula (mood, intro, story, close).\n\n`;
         systemPrompt = parts[0] + replacement + 'LEARNED PREFERENCES' + subParts[1];
       }
     }
@@ -214,7 +227,7 @@ Raw source data: ${JSON.stringify(product, null, 2)}
 Generate the requested fields now.`;
 
   if (lengthDirection) {
-    const words = lengthDirection === 'shorter' ? '25-35' : '100-130';
+    const words = lengthDirection === 'shorter' ? '40-60' : '120-150';
     const instruction = lengthDirection === 'shorter'
       ? `Keep it concise: target approximately ${words} words. Focus on the core message without padding.`
       : `Expand on details: target approximately ${words} words.`;
@@ -222,10 +235,10 @@ Generate the requested fields now.`;
     userPrompt += `\n\n=========================================
 !!! CRITICAL OVERRIDE FOR THIS TURN !!!
 =========================================
-IGNORE ALL previous rules about sentence count for the summary. 
+IGNORE ALL previous rules about word count for the summary. 
 The user explicitly demanded a ${lengthDirection.toUpperCase()} summary.
 ${instruction}
-DO NOT mention sibling sizes or colors. Just focus on describing this specific variant.`;
+DO NOT mention sibling sizes or colors. Just focus on describing this specific variant within the 4-part structure.`;
   }
 
   return { systemPrompt, userPrompt, tier, careMatch };

@@ -61,39 +61,41 @@ async function generateOne(product, priceBands, attempt = 1, conv_id = null) {
     }
   }
 
-  // Construct deterministic sibling strings to append to the LLM's core summary.
-  let deterministicSiblings = '';
-  const normalize = (v) => String(v).trim().toLowerCase();
-  const siblingSizes = Array.isArray(product.available_sizes) 
-    ? product.available_sizes.filter((s) => normalize(s) !== normalize(product.seating_capacity))
-    : [];
-  const siblingColors = Array.isArray(product.available_colors)
-    ? product.available_colors.filter((c) => normalize(c) !== normalize(product.color_finish))
-    : [];
-
-  if (product.seating_capacity) {
-    if (siblingSizes.length > 0) {
-      deterministicSiblings += ` This is the ${product.seating_capacity} size, and it is also available in ${siblingSizes.join(', ')}.`;
-    } else {
-      deterministicSiblings += ` This is the ${product.seating_capacity} size.`;
+  function generateBulletList(prod) {
+    const bullets = [];
+    const axes = prod.variant_axes || {};
+    
+    if (Array.isArray(axes.size) && axes.size.length > 0) {
+      bullets.push(`Available in ${axes.size.join(' and ')} sizes to suit different spaces.`);
     }
-  } else if (siblingSizes.length > 0) {
-    deterministicSiblings += ` Also available in ${siblingSizes.join(', ')}.`;
-  }
-  
-  if (product.color_finish) {
-    if (siblingColors.length > 0) {
-      deterministicSiblings += ` This is the ${product.color_finish} finish, and it is also available in ${siblingColors.join(', ')}.`;
-    } else {
-      deterministicSiblings += ` This is the ${product.color_finish} finish.`;
+    
+    if (prod.mattress_recommendation) {
+      if (prod.mattress_recommendation.size) {
+        bullets.push(`Recommended mattress sizes: ${prod.mattress_recommendation.size}.`);
+      }
+      if (prod.mattress_recommendation.thickness_range) {
+        bullets.push(`Recommended mattress thickness: ${prod.mattress_recommendation.thickness_range}.`);
+      }
     }
-  } else if (siblingColors.length > 0) {
-    deterministicSiblings += ` Also available in ${siblingColors.join(', ')}.`;
+    
+    if (Array.isArray(axes.storage_type) && axes.storage_type.length > 0) {
+      bullets.push(`Storage options: ${axes.storage_type.join(', ')}.`);
+    }
+    
+    if (Array.isArray(axes.finish) && axes.finish.length > 0) {
+      bullets.push(`Finish options: ${axes.finish.join(' and ')}.`);
+    }
+    
+    if (Array.isArray(axes.colour) && axes.colour.length > 0) {
+      bullets.push(`Colour options: ${axes.colour.join(', ')}.`);
+    }
+    
+    return bullets;
   }
 
-  if (deterministicSiblings) {
-    llmOutput.description.summary = (llmOutput.description.summary || '').trim() + deterministicSiblings;
-  }
+  llmOutput.description.key_features = generateBulletList(product);
+
+
 
   // returns: pure lookup, LLM never touches this field.
   const returns = getReturnsBlock(product.category);

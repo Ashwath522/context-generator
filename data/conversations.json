@@ -474,5 +474,44 @@
         "timestamp": "2026-08-27T09:41:27.638Z"
       }
     ]
+  },
+  "ground_truth_ul-kuba-queen-bed_1787897036581": {
+    "user": "test",
+    "product_id": "ul-kuba-queen-bed",
+    "original_msg": "Initial",
+    "created_at": "2026-08-28T06:03:56.582Z",
+    "turns": [
+      {
+        "msg": "make it noticeably shorter",
+        "feedback": "Condense the product description to its most essential information while maintaining clarity and impact.",
+        "timestamp": "2026-08-28T06:04:00.255Z"
+      }
+    ]
+  },
+  "ground_truth_ul-nimbus-king-bed_1787897042209": {
+    "user": "test",
+    "product_id": "ul-nimbus-king-bed",
+    "original_msg": "Initial",
+    "created_at": "2026-08-28T06:04:02.209Z",
+    "turns": [
+      {
+        "msg": "make it noticeably shorter",
+        "feedback": "Condense the product description to its most essential information while maintaining clarity and impact.",
+        "timestamp": "2026-08-28T06:04:08.273Z"
+      }
+    ]
+  },
+  "ground_truth_ul-milan-queen-bed_1787897050361": {
+    "user": "test",
+    "product_id": "ul-milan-queen-bed",
+    "original_msg": "Initial",
+    "created_at": "2026-08-28T06:04:10.362Z",
+    "turns": [
+      {
+        "msg": "make it noticeably shorter",
+        "feedback": "Condense the product description to its most essential information while maintaining clarity and impact.",
+        "timestamp": "2026-08-28T06:04:16.154Z"
+      }
+    ]
   }
 }
