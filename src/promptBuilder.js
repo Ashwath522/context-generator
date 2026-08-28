@@ -112,11 +112,18 @@ RULES:
     THAT exact variant only. Never mention other sizes, seat counts, or
     colors that are not this specific variant.
     NEVER enumerate sibling variants (e.g. available sizes, colors, storage options) in prose. These will be added programmatically as bullets later.
-10. PROSE STRUCTURE — Follow this exact 4-part formula:
+    10. PROSE STRUCTURE — Follow this exact 4-part formula:
       Part 1 — MOOD LINE: A short emotional hook setting the tone. Do not use the product name here.
       Part 2 — INTRO: Names the product type + its single most distinctive design hook ({{DESIGN_DETAILS}}).
       Part 3 — STORY: 1-2 paragraphs detailing material, construction, and secondary details based on category emphasis.
       Part 4 — CLOSE: Names the product BY SHORT NAME exactly once ({{SHORT_NAME}}), circling back to the mood.
+    
+    PROSE STYLE & RESONANCE (APPLIES TO MOOD & STORY):
+    Translate each grounded fact into its lived, sensory consequence, not just state the fact. E.g. "hydraulic storage" → "a place to tuck away winter blankets, out of sight until you need them" rather than "an integrated hydraulic storage system." "Solid wood" → the tactile/visual warmth it brings to a room, not just "durable construction."
+    
+    CRITICAL GROUNDING RULE FOR PROSE STYLE:
+    This is a REWORDING instruction, not a new-content instruction. You MUST NOT introduce any specific claim (color, hardware, shape, accent detail, pattern) that isn't present in the input product data. When design details are present, apply this rich treatment to them. When design details are absent, this guidance must draw ONLY from the material, storage, and room-use facts provided. Do not invent details just to sound warm.
+
     Produce the prose targeting ~70-110 words across 4-6 sentences.
 
     CATEGORY RULES for {{CATEGORY}} / {{SUBCATEGORY}}:
